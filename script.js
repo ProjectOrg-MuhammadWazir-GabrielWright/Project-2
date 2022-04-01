@@ -81,8 +81,10 @@
 
 // namespace
 const app = {};
-//Hacker news - Stories API - returns top 500 stores on site
+// Hacker news - Stories API - returns top 500 stores on site
 app.topStoriesUrl = "https://hacker-news.firebaseio.com/v0/topstories.json";
+// Hacker news - get item by id
+app.itemUrl = `https://hacker-news.firebaseio.com/v0/item/`;
 // Sentiments API url
 app.sentimentUrl = "https://api.meaningcloud.com/sentiment-2.1";
 // Proxy server url
@@ -91,18 +93,18 @@ app.proxyUrl = "http://proxy.hackeryou.com";
 app.sentimentApiKey = "1bf35516b59467add152b51d2139220e";
 
 // Proxy method to get url
-app.useProxy = (apiUrl, apiType, headlineText) => {
+app.useProxy = (apiUrl, apiType, inputText) => {
 	const url = new URL(app.proxyUrl);
 	if (apiType == "hackerNews") {
 		url.search = new URLSearchParams({
 			reqUrl: apiUrl,
 			"params[print]": "pretty",
 		});
-	} else {
+	} else if (apiType == "sentimentAnalyzer") {
 		url.search = new URLSearchParams({
 			reqUrl: apiUrl,
 			"params[key]": app.sentimentApiKey,
-			"params[txt]": headlineText,
+			"params[txt]": inputText,
 		});
 	}
 	return url;
@@ -135,11 +137,9 @@ app.displayArticleLinks = (data) => {
 };
 
 // analyze sentiment of headline
-app.analyzeSentiment = (headline) => {
-	// build sentiment url with headline text
-	const headlineUrl = `https://api.meaningcloud.com/sentiment-2.1`;
+app.analyzeSentiment = (inputText) => {
 	// query for sentiment;
-	fetch(app.useProxy(app.sentimentUrl, "", headline))
+	fetch(app.useProxy(app.sentimentUrl, "sentimentAnalyzer", inputText))
 		.then((res) => res.json())
 		.then((data) => {
 			// console.log(headline);
@@ -151,7 +151,7 @@ app.analyzeSentiment = (headline) => {
 app.getComments = (commentArr) => {
 	const shortArr = commentArr.slice(0, 1);
 	shortArr.forEach((commentId) => {
-		const commentUrl = `https://hacker-news.firebaseio.com/v0/item/${commentId}.json`;
+		const commentUrl = `${app.itemUrl}${commentId}.json`;
 		fetch(app.useProxy(commentUrl, "hackerNews"))
 			.then((res) => res.json())
 			.then((data) => {
@@ -164,7 +164,7 @@ app.getComments = (commentArr) => {
 // get top stories headlines
 app.getStoryData = (storyId) => {
 	// build story url with story id
-	const storyUrl = `https://hacker-news.firebaseio.com/v0/item/${storyId}.json`;
+	const storyUrl = `${app.itemUrl}${storyId}.json`;
 	// query for story details
 	fetch(app.useProxy(storyUrl, "hackerNews"))
 		.then((res) => res.json())
@@ -184,12 +184,12 @@ app.getStoryData = (storyId) => {
 // get top stories objects
 app.getTopStories = () => {
 	// route request through Juno proxy
-	fetch(app.useProxy(app.topStoriesUrl))
+	fetch(app.useProxy(app.topStoriesUrl, "hackerNews"))
 		.then((res) => {
 			return res.json();
 		})
 		.then((dataArr) => {
-			// shorten array to only top 20 items
+			// shorten array to only top 5
 			const shortArr = dataArr.slice(0, 1);
 			// loop over array of story IDs
 			shortArr.forEach((storyId) => {
