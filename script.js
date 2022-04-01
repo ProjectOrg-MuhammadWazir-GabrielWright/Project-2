@@ -82,8 +82,7 @@
 // namespace
 const app = {};
 //Hacker news - Stories API - returns top 500 stores on site
-app.topStoriesUrl =
-    "https://hacker-news.firebaseio.com/v0/topstories.json";
+app.topStoriesUrl = "https://hacker-news.firebaseio.com/v0/topstories.json";
 // Sentiments API url
 app.sentimentUrl = "https://api.meaningcloud.com/sentiment-2.1";
 // Proxy server url
@@ -93,80 +92,115 @@ app.sentimentApiKey = "1bf35516b59467add152b51d2139220e";
 
 // Proxy method to get url
 app.useProxy = (apiUrl, apiType, headlineText) => {
-    const url = new URL(app.proxyUrl);
-    if (apiType == "hackerNews") {
-        url.search = new URLSearchParams({
-            reqUrl: apiUrl,
-            "params[print]": "pretty",
-        });
-    } else {
-        url.search = new URLSearchParams({
-            reqUrl: apiUrl,
-            "params[key]": app.sentimentApiKey,
-            "params[txt]": headlineText,
-        });
-    }
-    return url;
+	const url = new URL(app.proxyUrl);
+	if (apiType == "hackerNews") {
+		url.search = new URLSearchParams({
+			reqUrl: apiUrl,
+			"params[print]": "pretty",
+		});
+	} else {
+		url.search = new URLSearchParams({
+			reqUrl: apiUrl,
+			"params[key]": app.sentimentApiKey,
+			"params[txt]": headlineText,
+		});
+	}
+	return url;
+};
+
+// display sentiment results
+app.displaySentimentResults = (data) => {
+	const sentimentList = document.querySelector(".sentiment-list");
+	const sentimentListItem = document.createTextNode(
+		`Agreement Level: ${data.agreement}, Irony Level: ${data.irony}, Subjectivity: ${data.subjectivity}`
+	);
+	sentimentList.appendChild(sentimentListItem);
+};
+
+// display article title
+app.displayArticleTitle = (data) => {
+	const articleTitleContainer = document.querySelector(
+		".article-title-container"
+	);
+	const articleList = document.querySelector(".article-list");
+	const articleListItem = document.createTextNode(data);
+	articleList.prepend(articleListItem);
+};
+
+// display article links
+app.displayArticleLinks = (data) => {
+	const linkList = document.querySelector(".link-list");
+	const linkListItem = document.createTextNode(data);
+	linkList.appendChild(linkListItem);
 };
 
 // analyze sentiment of headline
 app.analyzeSentiment = (headline) => {
-    // build sentiment url with headline text
-    const headlineUrl = `https://api.meaningcloud.com/sentiment-2.1`;
-    // query for sentiment;
-    fetch(app.useProxy(app.sentimentUrl, "", headline))
-        .then((res) => res.json())
-        .then((data) => {
-            // console.log(headline);
-            console.log(data);
-        });
+	// build sentiment url with headline text
+	const headlineUrl = `https://api.meaningcloud.com/sentiment-2.1`;
+	// query for sentiment;
+	fetch(app.useProxy(app.sentimentUrl, "", headline))
+		.then((res) => res.json())
+		.then((data) => {
+			// console.log(headline);
+			console.log(data);
+			app.displaySentimentResults(data);
+		});
 };
 
 app.getComments = (commentArr) => {
-    const shortArr = commentArr.slice(0, 1);
-    shortArr.forEach((commentId) => {
-        const commentUrl = `https://hacker-news.firebaseio.com/v0/item/${commentId}.json`;
-        fetch(app.useProxy(commentUrl, "hackerNews"))
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-                app.analyzeSentiment(data.text);
-            });
-    });
+	const shortArr = commentArr.slice(0, 1);
+	shortArr.forEach((commentId) => {
+		const commentUrl = `https://hacker-news.firebaseio.com/v0/item/${commentId}.json`;
+		fetch(app.useProxy(commentUrl, "hackerNews"))
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+				app.analyzeSentiment(data.text);
+			});
+	});
 };
 
 // get top stories headlines
 app.getStoryData = (storyId) => {
-    // build story url with story id
-    const storyUrl = `https://hacker-news.firebaseio.com/v0/item/${storyId}.json`;
-    // query for story details
-    fetch(app.useProxy(storyUrl, "hackerNews"))
-        .then((res) => res.json())
-        .then((data) => {
-            app.getComments(data.kids);
-        });
+	// build story url with story id
+	const storyUrl = `https://hacker-news.firebaseio.com/v0/item/${storyId}.json`;
+	// query for story details
+	fetch(app.useProxy(storyUrl, "hackerNews"))
+		.then((res) => res.json())
+		.then((data) => {
+			app.displayArticleTitle(data.title);
+			return data;
+		})
+		.then((data) => {
+			app.getComments(data.kids);
+			return data;
+		})
+		.then((data) => {
+			app.displayArticleLinks(data.url);
+		});
 };
 
 // get top stories objects
 app.getTopStories = () => {
-    // route request through Juno proxy
-    fetch(app.useProxy(app.topStoriesUrl))
-        .then((res) => {
-            return res.json();
-        })
-        .then((dataArr) => {
-            // shorten array to only top 20 items
-            const shortArr = dataArr.slice(0, 1);
-            // loop over array of story IDs
-            shortArr.forEach((storyId) => {
-                app.getStoryData(storyId);
-            });
-        });
+	// route request through Juno proxy
+	fetch(app.useProxy(app.topStoriesUrl))
+		.then((res) => {
+			return res.json();
+		})
+		.then((dataArr) => {
+			// shorten array to only top 20 items
+			const shortArr = dataArr.slice(0, 1);
+			// loop over array of story IDs
+			shortArr.forEach((storyId) => {
+				app.getStoryData(storyId);
+			});
+		});
 };
 
 // init method
 app.init = () => {
-    app.getTopStories();
+	app.getTopStories();
 };
 
 // call init
