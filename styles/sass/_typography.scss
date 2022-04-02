@@ -1,0 +1,41 @@
+/* Typography Partial */
+
+html {
+    font-size: 125%; // Setting base-font to 20px (16px * 125% = 20px)
+}
+
+body {
+    @include fontSize(20);
+    @include lineHeight(20);
+    font-family: $ff-primary, sans-serif;
+    font-weight: $fw-regular;
+    color: $clr-white;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+
+h1 {
+    @include fontSize(64);    
+    @include lineHeight(77);
+}
+
+h2 {
+    @include fontSize(20);
+    @include lineHeight(24);
+    font-weight: $fw-regular;
+}
+
+h3 {
+    @include fontSize(34);
+    @include lineHeight(35);
+}
+
+p {
+    @include fontSize(16);
+}
+
+li {
+    @include fontSize(16);
+}
