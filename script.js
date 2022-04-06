@@ -81,6 +81,10 @@
 
 // namespace
 const app = {};
+
+// target form element
+app.formEl = document.querySelector("form");
+
 // Hacker news - Stories API - returns top 500 stores on site
 app.topStoriesUrl = "https://hacker-news.firebaseio.com/v0/topstories.json";
 // Hacker news - get item by id
@@ -110,13 +114,59 @@ app.useProxy = (apiUrl, apiType, inputText) => {
 	return url;
 };
 
+// change icon based on sentiment score
+app.updateIcon = (sentimentIcon, sentimentType) => {
+	if (sentimentType === "AGREEMENT") {
+		sentimentIcon.classList.add("fa-thumbs-up");
+	} else if (sentimentType === "DISAGREEMENT") {
+		sentimentIcon.classList.add("fa-thumbs-down");
+	} else if (sentimentType === "IRONIC") {
+		sentimentIcon.classList.add("fa-brain");
+	} else if (sentimentType === "NONIRONIC") {
+		sentimentIcon.classList.add("fa-rainbow");
+	} else if (sentimentType === "SUBJECTIVE") {
+		sentimentIcon.classList.add("fa-bolt-lightning");
+	} else if (sentimentType === "OBJECTIVE") {
+		sentimentIcon.classList.add("fa-sun");
+	}
+	// add solid coloring
+	sentimentIcon.classList.add("fa-solid");
+};
+
 // display sentiment results
-app.displaySentimentResults = (data) => {
+app.displaySentimentResults = (sentimentData) => {
+	// target container
 	const sentimentList = document.querySelector(".sentiment-list");
-	const sentimentListItem = document.createTextNode(
-		`Agreement Level: ${data.agreement}, Irony Level: ${data.irony}, Subjectivity: ${data.subjectivity}`
-	);
-	sentimentList.appendChild(sentimentListItem);
+
+	// create list items for each sentiment
+	const agreementListItem = document.createElement("li");
+	const ironyListItem = document.createElement("li");
+	const subjectivityListItem = document.createElement("li");
+
+	// set list item content
+	agreementListItem.textContent = sentimentData.agreement;
+	ironyListItem.textContent = sentimentData.irony;
+	subjectivityListItem.textContent = sentimentData.subjectivity;
+
+	// create icons
+	const agreementIcon = document.createElement("i");
+	const ironyIcon = document.createElement("i");
+	const subjectivityIcon = document.createElement("i");
+
+	// update icon with appropriate class based on sentiment result
+	app.updateIcon(agreementIcon, sentimentData.agreement);
+	app.updateIcon(ironyIcon, sentimentData.irony);
+	app.updateIcon(subjectivityIcon, sentimentData.subjectivity);
+
+	// prepend icon to list item
+	agreementListItem.prepend(agreementIcon);
+	ironyListItem.prepend(ironyIcon);
+	subjectivityListItem.prepend(subjectivityIcon);
+
+	// append to DOM
+	sentimentList.appendChild(agreementListItem);
+	sentimentList.appendChild(ironyListItem);
+	sentimentList.appendChild(subjectivityListItem);
 };
 
 // display article title
@@ -137,70 +187,91 @@ app.displayArticleLinks = (data) => {
 };
 
 // analyze sentiment of headline
-app.analyzeSentiment = (inputText) => {
-	// query for sentiment;
-	fetch(app.useProxy(app.sentimentUrl, "sentimentAnalyzer", inputText))
+app.analyzeSentiment = (commentText) => {
+	// query for sentiment
+	fetch(app.useProxy(app.sentimentUrl, "sentimentAnalyzer", commentText))
 		.then((res) => res.json())
-		.then((data) => {
-			// console.log(headline);
-			console.log(data);
-			app.displaySentimentResults(data);
+		.then((sentimentData) => {
+			app.displaySentimentResults(sentimentData);
 		});
 };
 
-app.getComments = (commentArr) => {
-	const shortArr = commentArr.slice(0, 1);
-	shortArr.forEach((commentId) => {
+// get comment text from story's comment array
+app.getComments = (commentArr, commentInput) => {
+	// shorten comments array to length specified by user
+	const shortCommentArr = commentArr.slice(0, commentInput);
+	shortCommentArr.forEach((commentId) => {
 		const commentUrl = `${app.itemUrl}${commentId}.json`;
 		fetch(app.useProxy(commentUrl, "hackerNews"))
 			.then((res) => res.json())
-			.then((data) => {
-				console.log(data);
-				app.analyzeSentiment(data.text);
+			.then((commentData) => {
+				app.analyzeSentiment(commentData.text);
 			});
 	});
 };
 
 // get top stories headlines
-app.getStoryData = (storyId) => {
+app.getStoryData = (storyId, commentInput) => {
 	// build story url with story id
 	const storyUrl = `${app.itemUrl}${storyId}.json`;
 	// query for story details
 	fetch(app.useProxy(storyUrl, "hackerNews"))
 		.then((res) => res.json())
-		.then((data) => {
-			app.displayArticleTitle(data.title);
-			return data;
-		})
-		.then((data) => {
-			app.getComments(data.kids);
-			return data;
-		})
-		.then((data) => {
-			app.displayArticleLinks(data.url);
+		.then((storyData) => {
+			app.getComments(storyData.kids, commentInput);
+			// app.displayArticleTitle(storyData.title);
+			// app.displayArticleLinks(storyData.url);
 		});
 };
 
 // get top stories objects
-app.getTopStories = () => {
+app.getTopStories = (articlesInput, commentsInput) => {
 	// route request through Juno proxy
 	fetch(app.useProxy(app.topStoriesUrl, "hackerNews"))
 		.then((res) => {
 			return res.json();
 		})
 		.then((dataArr) => {
-			// shorten array to only top 5
-			const shortArr = dataArr.slice(0, 5);
-			// loop over array of story IDs
-			shortArr.forEach((storyId) => {
-				app.getStoryData(storyId);
+			// query returns 500 by default - trim array to match user selection
+			const articlesArr = dataArr.slice(0, articlesInput);
+			articlesArr.forEach((storyId) => {
+				// loop over articles array to get story details by Id
+				app.getStoryData(storyId, commentsInput);
 			});
 		});
 };
 
+// validate form input
+app.validateInputs = (articleInput, commentInput) => {
+	//check to make sure user selected a value for both dropdowns
+	if (articleInput && commentInput) {
+		return true;
+	} else {
+		return false;
+	}
+};
+
+app.setupForm = (event) => {
+	// prevent refresh
+	event.preventDefault();
+
+	// get user input from form
+	const articlesInput = document.querySelector("#articles").value;
+	const commentsInput = document.querySelector("#comments").value;
+
+	// validate user input, if it passes, proceed
+	if (app.validateInputs(articlesInput, commentsInput)) {
+		// feed user inputs into Hacker News query
+		app.getTopStories(articlesInput, commentsInput);
+	} else {
+		alert("Please enter both preferences");
+	}
+};
+
 // init method
 app.init = () => {
-	app.getTopStories();
+	// attach event listener to form submit
+	app.formEl.addEventListener("submit", app.setupForm);
 };
 
 // call init
