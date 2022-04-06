@@ -190,7 +190,7 @@ app.getTopStories = () => {
 		})
 		.then((dataArr) => {
 			// shorten array to only top 5
-			const shortArr = dataArr.slice(0, 1);
+			const shortArr = dataArr.slice(0, 5);
 			// loop over array of story IDs
 			shortArr.forEach((storyId) => {
 				app.getStoryData(storyId);
