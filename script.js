@@ -1,83 +1,83 @@
 /*
-       // Problem:
-       Sentiment Analyser for HackerNews Articles
+	   // Problem:
+	   Sentiment Analyser for HackerNews Articles
 ​
-       // Purpose:
-       It parses through the user comments/feedback left on news articles
-       and extracts information like emotional agreement, polarity,
-       subjectivity, and irony to display to the user of the tool which
-       they can use to better improve the quality of their product (news articles).
+	   // Purpose:
+	   It parses through the user comments/feedback left on news articles
+	   and extracts information like emotional agreement, polarity,
+	   subjectivity, and irony to display to the user of the tool which
+	   they can use to better improve the quality of their product (news articles).
 ​
-       // How to get/show data:
+	   // How to get/show data:
 ​
-       1. Query the HackerNews API to extract the top 5 stories of the day
-       2. Query for the details about those stories
-       3. Extract comments from each story
-       4. Use the comments to query a sentiment analyzer API
-       5. Parse response from sentiment analyzer and display results to user
+	   1. Query the HackerNews API to extract the top 5 stories of the day
+	   2. Query for the details about those stories
+	   3. Extract comments from each story
+	   4. Use the comments to query a sentiment analyzer API
+	   5. Parse response from sentiment analyzer and display results to user
 ​
-       // User Interface
+	   // User Interface
 ​
-       Our user is:
-       - Anyone who wants to read tech news
+	   Our user is:
+	   - Anyone who wants to read tech news
 ​
-       User pain:
-       - They struggle to find articles that other users like/enjoy
-       - They also want to get a sense of what other users' are saying about it
+	   User pain:
+	   - They struggle to find articles that other users like/enjoy
+	   - They also want to get a sense of what other users' are saying about it
 ​
-       Our tool (MVP):
-       - Provides users with a feed of articles that they may enjoy
-       - When the user interacts with an article they have two options:
+	   Our tool (MVP):
+	   - Provides users with a feed of articles that they may enjoy
+	   - When the user interacts with an article they have two options:
 ​
-       1. See what other's are saying/feeling about the article (sentiment)
-       - If the user selects the sentiment option, they would see a full breakdown of
-       the sentiment scores (emotional agreement, polarity, subjectivity, and irony).
-       - If the user likes what they see in the preview, they can explore more by reading the full
-       article
+	   1. See what other's are saying/feeling about the article (sentiment)
+	   - If the user selects the sentiment option, they would see a full breakdown of
+	   the sentiment scores (emotional agreement, polarity, subjectivity, and irony).
+	   - If the user likes what they see in the preview, they can explore more by reading the full
+	   article
 ​
-       2. Read more about the article
-       - Interact with a link to read more
+	   2. Read more about the article
+	   - Interact with a link to read more
 ​
 ​
-       // Stretch goals
+	   // Stretch goals
 ​
-       1. Getting Unsplash images to display for each article based on the title
-       2. Displaying the sentiment scores using different icons (legend)
-       3. Adding a landing page, with a call to action button which triggers the query
-       4. Allow the user to choose how many articles to display from topstories list (default is 5)
-       5. Allow the user to choose how many comments to analyze under each story (default is 1)
-       6. Error handling
+	   1. Getting Unsplash images to display for each article based on the title
+	   2. Displaying the sentiment scores using different icons (legend)
+	   3. Adding a landing page, with a call to action button which triggers the query
+	   4. Allow the user to choose how many articles to display from topstories list (default is 5)
+	   5. Allow the user to choose how many comments to analyze under each story (default is 1)
+	   6. Error handling
 ​
-       // Pseudocode
+	   // Pseudocode
 ​
-       Step 1: Query for top articles via landing page
-       - Has a query button on it with an event listener (form submit)
-       - Event triggers, getTopStories method is called which hits the HackerNewsAPI and
-       returns the top 5 articles ids in an array
+	   Step 1: Query for top articles via landing page
+	   - Has a query button on it with an event listener (form submit)
+	   - Event triggers, getTopStories method is called which hits the HackerNewsAPI and
+	   returns the top 5 articles ids in an array
 ​
-       Step 2: Query for story details
-       - Loop over the articles (getStoryData method) array and query the HackerNewsAPI by ID to get details about
-       story which includes the comments in an array
-       - Pass in the story title into the displayResults method (defined below)
+	   Step 2: Query for story details
+	   - Loop over the articles (getStoryData method) array and query the HackerNewsAPI by ID to get details about
+	   story which includes the comments in an array
+	   - Pass in the story title into the displayResults method (defined below)
 ​
-       Step 3: Make a displayResults method
-       - Target container in the DOM
-       - Create elements to store the output from query
-       - Set the text content of the elements to the queried results
-       - Append the elements to the DOM using the container we that we targetted
+	   Step 3: Make a displayResults method
+	   - Target container in the DOM
+	   - Create elements to store the output from query
+	   - Set the text content of the elements to the queried results
+	   - Append the elements to the DOM using the container we that we targetted
 ​
-       Step 3: Query for comments on each story
-       - Loop over the comments array using getCommentdate method array and pass it into the
-       analyzeSentiment method (defined below)
+	   Step 3: Query for comments on each story
+	   - Loop over the comments array using getCommentdate method array and pass it into the
+	   analyzeSentiment method (defined below)
 ​
-       Step 4: Make a analyzeSentiment method
-       - Takes in text
-       - Submits AJAX request to SentimentAnalyzerAPI
-       - Outputs sentiment scores (emotional agreement, polarity, subjectivity, and irony)
+	   Step 4: Make a analyzeSentiment method
+	   - Takes in text
+	   - Submits AJAX request to SentimentAnalyzerAPI
+	   - Outputs sentiment scores (emotional agreement, polarity, subjectivity, and irony)
 ​
-       Step 5: Call displayResults method again
-       - Which appends the sentiment results to the DOM for the user to see
-                */
+	   Step 5: Call displayResults method again
+	   - Which appends the sentiment results to the DOM for the user to see
+				*/
 
 // namespace
 const app = {};

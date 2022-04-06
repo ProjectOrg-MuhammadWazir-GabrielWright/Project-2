@@ -1,0 +1,31 @@
+/* Nav Partial */
+
+nav {
+    position: fixed;
+    width: 100%;
+    background: $clr-black;
+
+    .mobile-menu-container {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0 0.5rem 0;
+    }
+
+    .logo {
+        background: $clr-orange;
+        width: 35px;
+        height: 35px;
+        border-radius: 5px;
+
+        p {
+            @include fontSize(30);
+            @include lineHeight(35);
+            text-align: center;
+            color: $clr-black
+        }
+    }
+
+    i {
+        @include fontSize(35);
+    }
+}

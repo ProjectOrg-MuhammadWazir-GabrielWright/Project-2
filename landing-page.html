@@ -5,11 +5,96 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Landing Page</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+		<script src="https://kit.fontawesome.com/a3cb5273ce.js" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="styles/style.css" />
 	</head>
 	<body>
-		<h1>HackerNews</h1>
-		<h2>Sentiment Analyzer</h2>
+		<nav>
+			<div class="mobile-menu-container wrapper">
+				<div class="logo">
+					<p>Y</p>
+				</div>
+				<i class="fa-solid fa-bars"></i>
+			</div>
+		</nav>
+		<header>
+			<div class="text-container wrapper">
+				<h1>Hacker News</h1>
+				<h2>Sentiment Analyzer</h2>
+				<a href="#what-is-it">Learn More</a>
+			</div>			
+		</header>
+		<main>
+			<section class="what-is-it" id="what-is-it">
+				<div class="image-container">
+					<img src="./assets/what-is-it-img.jpg" alt="brain cell">
+				</div>
+				<div class="text-container wrapper">
+					<h3>What is sentiment analysis?</h3>
+					<p>A way to determine how a user feels based on the language that they use by combining natural language processing and text analysis</p>
+					<a href="#how-it-works"><i class="fa-solid fa-angle-down"></i></a>
+				</div>
+			</section>
+			<section class="how-it-works" id="how-it-works">
+				<div class="image-container">
+					<img src="./assets/how-it-works-img.jpg" alt="purple brain">
+				</div>
+				<div class="text-container wrapper">
+					<h3>How does it work?</h3>
+					<p>The tool:</p>
+					<ol>
+						<li>Breaks down each comment into smaller sentences</li>
+						<li>Identifies the relationship between each sentence</li>
+						<li>Evaluates the above to find the overall sentiment</li>
+					</ol>
+					<a href="#how-its-expressed"><i class="fa-solid fa-angle-down"></i></a>
+				</div>
+			</section>
+			<section class="how-its-expressed" id="how-its-expressed">
+				<div class="image-container">
+					<img src="./assets/how-its-expressed-img.jpg" alt="">
+				</div>
+				<div class="text-container wrapper">
+					<h3>Sentiment is expressed as:</h3>
+					<ul>
+						<li>
+							<i class="fa-solid fa-thumbs-up"></i>
+							Positive
+						</li>
+						<li>
+							<i class="fa-solid fa-thumbs-down"></i>
+							Negative
+						</li>
+					</ul>
+					<a href="#additional-factors"><i class="fa-solid fa-angle-down"></i></a>
+				</div>
+			</section>
+			<section class="additional-factors" id="additional-factors">
+				<div class="image-container">
+					<img src="./assets/additional-factors-img.jpg" alt="pink brain">
+				</div>
+				<div class="text-container wrapper">
+					<h3>The tool also factors in:</h3>
+					<div class="list-container">
+					<ul>
+						<li>
+							<i class="fa-solid fa-brain"></i>
+							Irony
+						</li>
+						<li>
+							<i class="fa-solid fa-bolt-lightning"></i>
+							Subjectivity
+						</li>
+					</ul>
+					<div class="link-container">
+						<a href="#">Get Started</a>
+					</div>
+				</div>
+			</section>
+		</main>
 		<script src="./script.js"></script>
 	</body>
 </html>
