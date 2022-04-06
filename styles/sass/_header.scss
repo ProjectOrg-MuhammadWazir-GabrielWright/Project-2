@@ -1,0 +1,27 @@
+/* Header Partial */
+
+header {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+
+	// Learn more button
+	a {
+		@include lineHeight(40);
+		display: inline-block;
+		box-shadow: 0 5px 0 $clr-white;
+		border-radius: 50px;
+		width: 180px;
+		height: 42px;
+		background: $clr-orange;
+		cursor: pointer;
+		font-weight: $fw-bold;
+		text-align: center;
+		text-decoration: none;
+		color: $clr-black;
+	}
+
+	h2 {
+		margin: 1rem 0 1rem 0;
+	}
+}

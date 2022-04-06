@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Query Form</title>
+		<link rel="stylesheet" href="./styles/style.css" />
+		<script
+			src="https://kit.fontawesome.com/a3cb5273ce.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<body>
+		<h1>Pick your preferences:</h1>
+		<form action="">
+			<!-- articles dropdown -->
+			<label class="sr-only" for="articles"
+				>Select the number of articles to display</label
+			>
+			<select name="articles" id="articles">
+				<option value="" selected># of articles to display</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
+			<!-- comments dropdown -->
+			<label class="sr-only" for="comments"
+				>Select the number of comments to analyze</label
+			>
+			<select name="comments" id="comments">
+				<option value="" selected># of comments to analyze</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
+			<!-- show news button -->
+			<input type="submit" value="Show News" />
+		</form>
+		<!-- results -->
+		<section>
+			<h2>Results</h2>
+			<div class="wrapper">
+				<div class="results-container">
+					<div class="article-title-container">
+						<ul class="article-list">
+							<ul class="sentiment-list"></ul>
+							<ul class="link-list"></ul>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		<script src="./script.js"></script>
+	</body>
+</html>

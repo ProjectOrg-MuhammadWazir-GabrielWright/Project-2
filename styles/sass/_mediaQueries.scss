@@ -1,0 +1,238 @@
+/* Media Queries Partial */
+
+// Screen-size between 480px and 768px;
+@media screen and (min-width: 480px) {
+    
+    header {
+
+        h1 {
+            @include fontSize(74);
+        }
+
+        h2 {
+            @include fontSize(23);
+        }
+
+        a {
+            @include fontSize(24);
+            @include lineHeight(42);
+            width: 190px;
+            height: 44px;
+        }
+    }
+    
+    .what-is-it {
+
+        h3 {
+            @include fontSize(39);
+            @include lineHeight(40);
+            margin: 2rem 0rem 2rem 0rem;
+            
+        }
+
+        p {
+            @include fontSize(19);
+            @include lineHeight(25);
+        }
+    }
+
+    .how-it-works {
+
+        .image-container {
+            height: 20vh;
+        }
+
+        h3 {
+            @include fontSize(39);
+            @include lineHeight(40);
+            margin: 2rem 0rem 1.5rem 0rem;
+        
+        }
+
+        p {
+            @include fontSize(23);
+            text-align: center;
+        }
+
+        li {
+            @include fontSize(19);
+            @include lineHeight(25);
+        }
+    }
+
+    .how-its-expressed {
+        
+        .image-container {
+            height: 20vh;
+        }
+        
+        h3 {
+            @include fontSize(39);
+            @include lineHeight(40);
+            margin: 2rem 0rem 2rem 0rem;
+        }
+
+        li {
+            @include fontSize(41);
+        }
+    }
+
+    .additional-factors {
+    
+        .image-container {
+            height: 20vh;
+        }
+    
+        h3 {
+            @include fontSize(39);
+            @include lineHeight(40);
+            margin: 2rem 0rem 2rem 0rem;
+        }
+    
+        li {
+            @include fontSize(41);
+        }
+
+        a {
+            @include fontSize(24);
+            @include lineHeight(42);
+            width: 190px;
+            height: 44px;
+            margin: 1rem 0 0 0;
+        }
+    }
+}
+
+// Screen-size between 768px and 1200px;
+@media screen and (min-width: 768px) {
+
+    header {
+        
+        h1 {
+            @include fontSize(104);
+        }
+
+        h2 {
+            @include fontSize(33);
+            margin: 2rem 0 2rem 0rem;   
+        }
+
+        a {
+            @include fontSize(28);
+            @include lineHeight(62);
+            width: 300px;
+            height: 60px;
+        }
+    }
+
+    .what-is-it {
+
+        h3 {
+            @include fontSize(55);
+            @include lineHeight(56);
+        }
+
+        p {
+            @include fontSize(26);
+            @include lineHeight(35);  
+        }
+    }
+
+    .how-it-works {
+        
+        .image-container {
+            height: 40vh;
+        }
+
+        h3 {
+            @include fontSize(55);
+            @include lineHeight(56);            
+        }
+        
+        p {
+            @include fontSize(32);
+            margin: 0 0 1.5rem 0;
+        }
+        
+        li {
+            @include fontSize(26);
+            @include lineHeight(35);
+        }
+        
+    }
+
+    .how-its-expressed {
+        
+        .image-container {
+            height: 40vh;
+        }
+        
+        h3 {
+            @include fontSize(55);
+            @include lineHeight(56);
+        }
+
+        li {
+            @include fontSize(58);
+        }
+    }
+
+    .additional-factors {
+    
+        .image-container {
+            height: 40vh;
+        }
+    
+        h3 {
+            @include fontSize(55);
+            @include lineHeight(56);
+        }
+    
+        li {
+            @include fontSize(58);
+        }
+
+        a {
+            @include fontSize(28);
+            @include lineHeight(62);
+            width: 300px;
+            height: 60px;
+        }
+    }
+
+    
+}
+
+// Screen-size 1200px or greater;
+@media screen and (min-width: 1200px) {
+
+    header {
+
+        h1 {
+            @include fontSize(104);
+        }
+
+        h2 {
+            @include fontSize(33);
+            margin: 2rem 0 2rem 0rem;
+        }
+    }
+
+    .what-is-it {
+
+        h3 {
+            margin: 3rem 0rem 3rem 0rem;
+        }
+
+        p {
+            max-width: 1000px;
+        }
+    }
+
+    .how-it-works {
+        
+        h3 {
+            margin: 3rem 0rem 3rem 0rem;
+        }
+    }
+}
