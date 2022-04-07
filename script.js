@@ -187,12 +187,13 @@ app.displayArticleLinks = (data) => {
 };
 
 // analyze sentiment of headline
-app.analyzeSentiment = (commentText) => {
+app.analyzeSentiment = async (commentText) => {
 	// query for sentiment
 	fetch(app.useProxy(app.sentimentUrl, "sentimentAnalyzer", commentText))
 		.then((res) => res.json())
 		.then((sentimentData) => {
-			app.displaySentimentResults(sentimentData);
+			// app.displaySentimentResults(sentimentData);
+			console.log(sentimentData);
 		});
 };
 
@@ -200,13 +201,16 @@ app.analyzeSentiment = (commentText) => {
 app.getComments = (commentArr, commentInput) => {
 	// shorten comments array to length specified by user
 	const shortCommentArr = commentArr.slice(0, commentInput);
-	shortCommentArr.forEach((commentId) => {
-		const commentUrl = `${app.itemUrl}${commentId}.json`;
-		fetch(app.useProxy(commentUrl, "hackerNews"))
-			.then((res) => res.json())
-			.then((commentData) => {
-				app.analyzeSentiment(commentData.text);
-			});
+	shortCommentArr.forEach((commentId, i) => {
+		setTimeout(function () {
+			const commentUrl = `${app.itemUrl}${commentId}.json`;
+			fetch(app.useProxy(commentUrl, "hackerNews"))
+				.then((res) => res.json())
+				.then((commentData) => {
+					// query for sentiment
+					app.analyzeSentiment(commentData.text);
+				});
+		}, i * 1200);
 	});
 };
 
@@ -234,9 +238,11 @@ app.getTopStories = (articlesInput, commentsInput) => {
 		.then((dataArr) => {
 			// query returns 500 by default - trim array to match user selection
 			const articlesArr = dataArr.slice(0, articlesInput);
-			articlesArr.forEach((storyId) => {
-				// loop over articles array to get story details by Id
-				app.getStoryData(storyId, commentsInput);
+			articlesArr.forEach((storyId, i) => {
+				setTimeout(function () {
+					// loop over articles array to get story details by Id
+					app.getStoryData(storyId, commentsInput);
+				}, i * 2000);
 			});
 		});
 };
