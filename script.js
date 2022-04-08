@@ -128,20 +128,30 @@ app.updateIcon = (sentimentIcon, sentimentType) => {
 		sentimentIcon.classList.add("fa-bolt-lightning");
 	} else if (sentimentType === "OBJECTIVE") {
 		sentimentIcon.classList.add("fa-sun");
+	} else {
+		sentimentIcon.classList.add("fa-caret-right");
 	}
 	// add solid coloring
 	sentimentIcon.classList.add("fa-solid");
 };
 
 // display sentiment results
-app.displaySentimentResults = (sentimentData) => {
-	// target container
-	const sentimentList = document.querySelector(".sentiment-list");
+app.displayResults = (storyData, sentimentData) => {
+	// target results container
+	const storyElem = document.querySelector(".results-container");
+
+	// create container for comment
+	const commentElem = document.createElement("ul");
+	commentElem.setAttribute("id", `comment-sentiment`);
 
 	// create list items for each sentiment
 	const agreementListItem = document.createElement("li");
 	const ironyListItem = document.createElement("li");
 	const subjectivityListItem = document.createElement("li");
+
+	// create list item for story url
+	const linkListItem = document.createElement("li");
+	const linkElem = document.createElement("a");
 
 	// set list item content
 	agreementListItem.textContent = sentimentData.agreement;
@@ -152,6 +162,14 @@ app.displaySentimentResults = (sentimentData) => {
 	const agreementIcon = document.createElement("i");
 	const ironyIcon = document.createElement("i");
 	const subjectivityIcon = document.createElement("i");
+	const caretIcon = document.createElement("i");
+
+	// set up the story link
+	linkElem.setAttribute("href", storyData.url);
+	linkElem.textContent = "Full Article";
+	linkListItem.appendChild(linkElem);
+	app.updateIcon(caretIcon);
+	linkListItem.append(caretIcon);
 
 	// update icon with appropriate class based on sentiment result
 	app.updateIcon(agreementIcon, sentimentData.agreement);
@@ -163,10 +181,45 @@ app.displaySentimentResults = (sentimentData) => {
 	ironyListItem.prepend(ironyIcon);
 	subjectivityListItem.prepend(subjectivityIcon);
 
+	// append list items to ulElem
+	commentElem.appendChild(agreementListItem);
+	commentElem.appendChild(ironyListItem);
+	commentElem.appendChild(subjectivityListItem);
+	commentElem.appendChild(linkListItem);
+
+	// create container for story title
+	const titleElem = document.createElement("h3");
+	titleElem.classList.add("title-wrapper");
+	titleElem.textContent = `${storyData.title} by ${storyData.by}`;
+
+	// create element for article image
+	const imgElem = document.createElement("img");
+	imgElem.setAttribute("src", "./assets/luca-bravo-XJXWbfSo2f0-unsplash.jpg");
+	imgElem.setAttribute("alt", "a generic computer-themed picture");
+
+	// create overall sentiment text element
+	const textElem = document.createElement("h4");
+	textElem.textContent = "Overall user sentiment:";
+
+	// create container for sentiment information
+	const sentimentElem = document.createElement("div");
+	sentimentElem.classList.add("sentiment-wrapper");
+
+	// create story wrapper
+	const storyWrapperElem = document.createElement("div");
+	storyWrapperElem.classList.add("story-wrapper");
+
+	// append to sentiment wrapper
+	sentimentElem.appendChild(imgElem);
+	sentimentElem.appendChild(textElem);
+	sentimentElem.appendChild(commentElem);
+
+	// append to story wrapper
+	storyWrapperElem.appendChild(titleElem);
+	storyWrapperElem.appendChild(sentimentElem);
+
 	// append to DOM
-	sentimentList.appendChild(agreementListItem);
-	sentimentList.appendChild(ironyListItem);
-	sentimentList.appendChild(subjectivityListItem);
+	storyElem.appendChild(storyWrapperElem);
 };
 
 // display article title
@@ -187,49 +240,42 @@ app.displayArticleLinks = (data) => {
 };
 
 // analyze sentiment of headline
-app.analyzeSentiment = async (commentText) => {
+app.analyzeSentiment = (storyData, commentText) => {
 	// query for sentiment
 	fetch(app.useProxy(app.sentimentUrl, "sentimentAnalyzer", commentText))
 		.then((res) => res.json())
 		.then((sentimentData) => {
-			// app.displaySentimentResults(sentimentData);
-			console.log(sentimentData);
+			// display results
+			app.displayResults(storyData, sentimentData);
 		});
 };
 
 // get comment text from story's comment array
-app.getComments = (commentArr, commentInput) => {
-	// shorten comments array to length specified by user
-	const shortCommentArr = commentArr.slice(0, commentInput);
-	shortCommentArr.forEach((commentId, i) => {
-		setTimeout(function () {
-			const commentUrl = `${app.itemUrl}${commentId}.json`;
-			fetch(app.useProxy(commentUrl, "hackerNews"))
-				.then((res) => res.json())
-				.then((commentData) => {
-					// query for sentiment
-					app.analyzeSentiment(commentData.text);
-				});
-		}, i * 1200);
-	});
+app.getComments = async (storyData, storyId) => {
+	// grab the first comment from story
+	const commentId = storyData.kids[0];
+	const commentUrl = `${app.itemUrl}${commentId}.json`;
+	const res = await fetch(app.useProxy(commentUrl, "hackerNews"));
+	const commentData = await res.json().text;
+
+	// analyze comment text
+	app.analyzeSentiment(storyData, commentData, storyId);
 };
 
 // get top stories headlines
-app.getStoryData = (storyId, commentInput) => {
+app.getStoryData = (storyId) => {
 	// build story url with story id
 	const storyUrl = `${app.itemUrl}${storyId}.json`;
 	// query for story details
 	fetch(app.useProxy(storyUrl, "hackerNews"))
 		.then((res) => res.json())
 		.then((storyData) => {
-			app.getComments(storyData.kids, commentInput);
-			// app.displayArticleTitle(storyData.title);
-			// app.displayArticleLinks(storyData.url);
+			app.getComments(storyData, storyId);
 		});
 };
 
 // get top stories objects
-app.getTopStories = (articlesInput, commentsInput) => {
+app.getTopStories = (articlesInput) => {
 	// route request through Juno proxy
 	fetch(app.useProxy(app.topStoriesUrl, "hackerNews"))
 		.then((res) => {
@@ -241,16 +287,16 @@ app.getTopStories = (articlesInput, commentsInput) => {
 			articlesArr.forEach((storyId, i) => {
 				setTimeout(function () {
 					// loop over articles array to get story details by Id
-					app.getStoryData(storyId, commentsInput);
-				}, i * 2000);
+					app.getStoryData(storyId);
+				}, i * 1000);
 			});
 		});
 };
 
 // validate form input
-app.validateInputs = (articleInput, commentInput) => {
+app.validateInputs = (articleInput) => {
 	//check to make sure user selected a value for both dropdowns
-	if (articleInput && commentInput) {
+	if (articleInput) {
 		return true;
 	} else {
 		return false;
@@ -263,14 +309,13 @@ app.setupForm = (event) => {
 
 	// get user input from form
 	const articlesInput = document.querySelector("#articles").value;
-	const commentsInput = document.querySelector("#comments").value;
 
 	// validate user input, if it passes, proceed
-	if (app.validateInputs(articlesInput, commentsInput)) {
+	if (app.validateInputs(articlesInput)) {
 		// feed user inputs into Hacker News query
-		app.getTopStories(articlesInput, commentsInput);
+		app.getTopStories(articlesInput);
 	} else {
-		alert("Please enter both preferences");
+		alert("Please enter preference");
 	}
 };
 

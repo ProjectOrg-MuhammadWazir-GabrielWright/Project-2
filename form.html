@@ -12,7 +12,7 @@
 		></script>
 	</head>
 	<body>
-		<h1>Pick your preferences:</h1>
+		<h1>Pick your preference:</h1>
 		<form action="">
 			<!-- articles dropdown -->
 			<label class="sr-only" for="articles"
@@ -23,17 +23,10 @@
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
+				<option value="5">5</option>
+				<option value="10">10</option>
 			</select>
-			<!-- comments dropdown -->
-			<label class="sr-only" for="comments"
-				>Select the number of comments to analyze</label
-			>
-			<select name="comments" id="comments">
-				<option value="" selected># of comments to analyze</option>
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-			</select>
+
 			<!-- show news button -->
 			<input type="submit" value="Show News" />
 		</form>
@@ -41,14 +34,7 @@
 		<section>
 			<h2>Results</h2>
 			<div class="wrapper">
-				<div class="results-container">
-					<div class="article-title-container">
-						<ul class="article-list">
-							<ul class="sentiment-list"></ul>
-							<ul class="link-list"></ul>
-						</ul>
-					</div>
-				</div>
+				<div class="results-container"></div>
 			</div>
 		</section>
 		<script src="./script.js"></script>
