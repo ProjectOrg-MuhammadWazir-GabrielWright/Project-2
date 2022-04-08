@@ -222,23 +222,6 @@ app.displayResults = (storyData, sentimentData) => {
 	storyElem.appendChild(storyWrapperElem);
 };
 
-// display article title
-app.displayArticleTitle = (data) => {
-	const articleTitleContainer = document.querySelector(
-		".article-title-container"
-	);
-	const articleList = document.querySelector(".article-list");
-	const articleListItem = document.createTextNode(data);
-	articleList.prepend(articleListItem);
-};
-
-// display article links
-app.displayArticleLinks = (data) => {
-	const linkList = document.querySelector(".link-list");
-	const linkListItem = document.createTextNode(data);
-	linkList.appendChild(linkListItem);
-};
-
 // analyze sentiment of headline
 app.analyzeSentiment = (storyData, commentText) => {
 	// query for sentiment
