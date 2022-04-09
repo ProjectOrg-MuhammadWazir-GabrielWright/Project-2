@@ -335,7 +335,7 @@ a {
 .form-header h1 {
   font-size: 1.7rem;
   line-height: 1.75rem;
-  margin: 12.5rem 0rem 0rem 0rem;
+  margin: 12.75rem 0rem 0rem 0rem;
   text-align: center;
 }
 
@@ -479,7 +479,7 @@ a {
 
 /* Form Page */
 .preferences {
-  height: 85vh;
+  height: 70vh;
 }
 .preferences form {
   display: -webkit-box;
@@ -553,13 +553,14 @@ a {
 
 .results {
   scroll-margin-top: 3rem;
+  margin-bottom: 30rem;
 }
 .results h2 {
   font-size: 1.6rem;
   font-weight: 700;
   margin-bottom: 1rem;
 }
-.results .story-wrapper {
+.results .story-container {
   margin-bottom: 2rem;
 }
 .results .article-title-container {
@@ -583,7 +584,7 @@ a {
   color: #000;
   padding: 0 0.5rem 0 0.5rem;
 }
-.results .sentiment-wrapper {
+.results .sentiment-container {
   border: 1px solid #fff;
   border-radius: 10px;
   margin: 0.5rem 0 0.5rem 0;

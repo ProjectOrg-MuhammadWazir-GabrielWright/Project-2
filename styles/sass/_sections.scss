@@ -163,7 +163,7 @@
 //====================
 
 .preferences {
-    height: 85vh;
+    height: 70vh;
 
     form {
         display: flex;
@@ -229,6 +229,7 @@
 .results {
 
     scroll-margin-top: 3rem;
+    margin-bottom: 30rem;
 
     
     h2 {
@@ -237,7 +238,7 @@
         margin-bottom: 1rem;
     }
 
-    .story-wrapper {
+    .story-container {
         margin-bottom: 2rem;
     }
 
@@ -260,7 +261,7 @@
         padding: 0 0.5rem 0 0.5rem;
     }
 
-    .sentiment-wrapper {
+    .sentiment-container {
         border: 1px solid $clr-white;
         border-radius: 10px;
         margin: 0.5rem 0 0.5rem 0;

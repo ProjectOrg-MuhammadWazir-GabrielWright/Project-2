@@ -139,7 +139,7 @@ app.updateIcon = (sentimentIcon, sentimentType) => {
 app.displayResults = (storyData, sentimentData) => {
 
 	// target results container
-	const storyElem = document.querySelector(".results-container");
+	const resultsElem = document.querySelector(".results");
 
 	// create container for comment
 	const commentElem = document.createElement("ul");
@@ -208,7 +208,7 @@ app.displayResults = (storyData, sentimentData) => {
 
 	// create container for sentiment information
 	const sentimentElem = document.createElement("div");
-	sentimentElem.classList.add("sentiment-wrapper");
+	sentimentElem.classList.add("sentiment-container");
 
 	// create container for article and image
 	const imgListContainerElem = document.createElement("div");
@@ -224,7 +224,7 @@ app.displayResults = (storyData, sentimentData) => {
 
 	// create story wrapper
 	const storyWrapperElem = document.createElement("div");
-	storyWrapperElem.classList.add("story-wrapper");
+	storyWrapperElem.classList.add("story-container");
 
 	// append to sentiment wrapper
 	sentimentElem.appendChild(textElem);
@@ -244,7 +244,7 @@ app.displayResults = (storyData, sentimentData) => {
 	titleContainerElem.appendChild(titleElem);
 
 	// append to DOM
-	storyElem.appendChild(storyWrapperElem);
+	resultsElem.appendChild(storyWrapperElem);
 
 	document.querySelector("#results").scrollIntoView({
 		behavior: "smooth",
