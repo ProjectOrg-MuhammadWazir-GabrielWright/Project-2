@@ -304,7 +304,7 @@ a {
 }
 
 /* Header Partial */
-header {
+.landing-page-header {
   height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -313,7 +313,7 @@ header {
       -ms-flex-align: center;
           align-items: center;
 }
-header a {
+.landing-page-header a {
   line-height: 2rem;
   display: inline-block;
   -webkit-box-shadow: 0 5px 0 #fff;
@@ -328,11 +328,19 @@ header a {
   text-decoration: none;
   color: #000;
 }
-header h2 {
+.landing-page-header h2 {
   margin: 1rem 0 1rem 0;
 }
 
+.form-header h1 {
+  font-size: 1.7rem;
+  line-height: 1.75rem;
+  margin: 5.5rem 0rem 0rem 0rem;
+  text-align: center;
+}
+
 /* Section Partial */
+/* Landing Page */
 .what-is-it {
   height: 100vh;
   padding-top: 3rem;
@@ -469,9 +477,81 @@ header h2 {
   color: #000;
 }
 
+/* Form Page */
+.preferences form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.preferences .articles-dropdown-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 4rem 0 4rem 0;
+}
+.preferences select {
+  font-size: 1rem;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background: #fff;
+  color: #000;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  height: 50px;
+  border-radius: 15px;
+  -webkit-box-shadow: 0 5px 0 #F60;
+          box-shadow: 0 5px 0 #F60;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0.5rem;
+  width: 100%;
+}
+.preferences i {
+  font-size: 2rem;
+  color: #000;
+  position: absolute;
+  right: 15px;
+  top: 3px;
+  pointer-events: none;
+}
+.preferences input {
+  border: none;
+  line-height: 2rem;
+  margin: 0 auto;
+  -webkit-box-shadow: 0 5px 0 #fff;
+          box-shadow: 0 5px 0 #fff;
+  border-radius: 50px;
+  width: 180px;
+  height: 42px;
+  background: #F60;
+  cursor: pointer;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+}
+
 /* Nav Partial */
 nav {
   position: fixed;
+  top: 0px;
   width: 100%;
   background: #000;
 }
@@ -572,6 +652,16 @@ nav i {
     height: 44px;
     margin: 1rem 0 0 0;
   }
+
+  .preferences select {
+    font-size: 1.2rem;
+  }
+  .preferences input {
+    font-size: 1.2rem;
+    line-height: 2.1rem;
+    width: 190px;
+    height: 44px;
+  }
 }
 @media screen and (min-width: 768px) {
   header h1 {
@@ -635,6 +725,20 @@ nav i {
     font-size: 2.9rem;
   }
   .additional-factors a {
+    font-size: 1.4rem;
+    line-height: 3.1rem;
+    width: 300px;
+    height: 60px;
+  }
+
+  .preferences select {
+    height: 60px;
+  }
+  .preferences i {
+    font-size: 2.5rem;
+    top: 2px;
+  }
+  .preferences input {
     font-size: 1.4rem;
     line-height: 3.1rem;
     width: 300px;

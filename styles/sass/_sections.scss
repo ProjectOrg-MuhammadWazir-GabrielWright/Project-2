@@ -1,5 +1,9 @@
 /* Section Partial */
 
+//====================
+/* Landing Page */
+//====================
+
 .what-is-it {
     height: 100vh;
     padding-top: 3rem;
@@ -153,3 +157,70 @@
         color: $clr-black;
     }
 }
+
+//====================
+/* Form Page */
+//====================
+
+.preferences {
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .articles-dropdown-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;  
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 4rem 0 4rem 0;
+    }
+
+    select {
+        @include fontSize(20);
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        background: $clr-white;
+        color: $clr-black;
+        font-family: $ff-primary;
+        font-weight: $fw-bold;
+        height: 50px;
+        border-radius: 15px;
+        box-shadow: 0 5px 0 $clr-orange;
+        margin: 0 0 0 0;
+        padding: 0 0 0 0.5rem;
+        width: 100%;
+        
+    
+    }
+    
+    i {
+        @include fontSize(40);
+        color: $clr-black;
+        position: absolute;
+        right: 15px;
+        top: 3px;
+        pointer-events: none;
+    }
+    
+    input {
+        border: none;
+        @include lineHeight(40);
+        margin: 0 auto;
+        box-shadow: 0 5px 0 $clr-white;
+        border-radius: 50px;
+        width: 180px;
+        height: 42px;
+        background: $clr-orange;
+        cursor: pointer;
+        font-weight: $fw-bold;
+        text-align: center;
+        text-decoration: none;
+        color: $clr-black;
+    }
+}
+

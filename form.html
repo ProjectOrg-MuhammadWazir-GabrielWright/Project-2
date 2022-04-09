@@ -12,49 +12,54 @@
 		></script>
 	</head>
 	<body>
-		<h1>Pick your preferences:</h1>
-		<form action="">
-			<!-- articles dropdown -->
-			<label class="sr-only" for="articles"
-				>Select the number of articles to display</label
-			>
-			<select name="articles" id="articles">
-				<option value="" selected># of articles to display</option>
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-			</select>
-			<!-- comments dropdown -->
-			<label class="sr-only" for="comments"
-				>Select the number of comments to analyze</label
-			>
-			<select name="comments" id="comments">
-				<option value="" selected># of comments to analyze</option>
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-			</select>
-			<!-- show news button -->
-			<input type="submit" value="Show News" />
-		</form>
-		<!-- results -->
-		<section>
-			<h2>Results</h2>
-			<div class="wrapper">
-				<div class="results-container">
-					<div class="article-title-container">
-						<ul class="article-list">
-							<ul class="sentiment-list"></ul>
-							<ul class="link-list"></ul>
-						</ul>
+		<nav>
+			<div class="mobile-menu-container wrapper">
+				<div class="logo">
+					<p>Y</p>
+				</div>
+				<i class="fa-solid fa-bars"></i>
+			</div>
+		</nav>
+		<header class="form-header">
+			<h1>Pick your preferences:</h1>
+		</header>
+		<main>
+			<section class="preferences">
+				<div class="wrapper">
+					<form action="#">
+						<!-- articles dropdown -->
+						<div class="articles-dropdown-container">
+							<label class="sr-only" for="articles">Select the number of articles to display</label>
+							<select name="articles" id="articles">
+								<option value="" selected># of articles to display</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+							<i class="fa-solid fa-caret-down"></i>
+						</div>
+						<input type="submit" value="Show News" />
+					</form>
+				</div>
+			</section>
+			
+			<!-- results -->
+			<section>
+				<h2>Results</h2>
+				<div class="wrapper">
+					<div class="results-container">
+						<div class="article-title-container">
+							<ul class="article-list">
+								<ul class="sentiment-list"></ul>
+								<ul class="link-list"></ul>
+							</ul>
+						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+			</section>
+		</main>
 		<script src="./script.js"></script>
 	</body>
 </html>

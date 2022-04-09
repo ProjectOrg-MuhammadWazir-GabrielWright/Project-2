@@ -1,6 +1,6 @@
 /* Header Partial */
 
-header {
+.landing-page-header {
 	height: 100vh;
 	display: flex;
 	align-items: center;
@@ -24,4 +24,14 @@ header {
 	h2 {
 		margin: 1rem 0 1rem 0;
 	}
+}
+
+.form-header {
+
+    h1 {
+        @include fontSize(34);
+        @include lineHeight(35);
+        margin: 5.5rem 0rem 0rem 0rem;
+        text-align: center;
+    }
 }
