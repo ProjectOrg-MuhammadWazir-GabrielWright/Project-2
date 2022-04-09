@@ -21,43 +21,31 @@
 			</div>
 		</nav>
 		<header class="form-header">
-			<h1>Pick your preferences:</h1>
+			<h1>Select # of articles to display:</h1>
 		</header>
 		<main>
-			<section class="preferences">
-				<div class="wrapper">
-					<form action="#">
-						<!-- articles dropdown -->
-						<div class="articles-dropdown-container">
-							<label class="sr-only" for="articles">Select the number of articles to display</label>
-							<select name="articles" id="articles">
-								<option value="" selected># of articles to display</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-							</select>
-							<i class="fa-solid fa-caret-down"></i>
-						</div>
-						<input type="submit" value="Show News" />
-					</form>
-				</div>
+			<section class="preferences wrapper">
+				<form action="#">
+					<!-- articles dropdown -->
+					<div class="articles-dropdown-container">
+						<label class="sr-only" for="articles">Select the number of articles to display</label>
+						<select name="articles" id="articles">
+							<option value="" selected># of articles to display</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+						<i class="fa-solid fa-caret-down"></i>
+					</div>
+					<input type="submit" value="Show News" />
+				</form>
 			</section>
 			
 			<!-- results -->
-			<section>
-				<h2>Results</h2>
-				<div class="wrapper">
-					<div class="results-container">
-						<div class="article-title-container">
-							<ul class="article-list">
-								<ul class="sentiment-list"></ul>
-								<ul class="link-list"></ul>
-							</ul>
-						</div>
-					</div>
-				</div>
+			<section class="results wrapper" id="results">
+					<h2>Results:</h2>				
 			</section>
 		</main>
 		<script src="./script.js"></script>

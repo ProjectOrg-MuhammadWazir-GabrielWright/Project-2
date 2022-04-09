@@ -137,8 +137,9 @@ app.updateIcon = (sentimentIcon, sentimentType) => {
 
 // display sentiment results
 app.displayResults = (storyData, sentimentData) => {
+
 	// target results container
-	const storyElem = document.querySelector(".results-container");
+	const resultsElem = document.querySelector(".results");
 
 	// create container for comment
 	const commentElem = document.createElement("ul");
@@ -189,9 +190,13 @@ app.displayResults = (storyData, sentimentData) => {
 
 	// create container for story title
 	const titleElem = document.createElement("h3");
-	titleElem.classList.add("title-wrapper");
+	titleElem.classList.add("article-title");
 	titleElem.textContent = `${storyData.title} by ${storyData.by}`;
 
+	// create title container
+	const titleContainerElem = document.createElement("div");
+	titleContainerElem.classList.add("article-title-container");
+	
 	// create element for article image
 	const imgElem = document.createElement("img");
 	imgElem.setAttribute("src", "./assets/luca-bravo-XJXWbfSo2f0-unsplash.jpg");
@@ -203,23 +208,49 @@ app.displayResults = (storyData, sentimentData) => {
 
 	// create container for sentiment information
 	const sentimentElem = document.createElement("div");
-	sentimentElem.classList.add("sentiment-wrapper");
+	sentimentElem.classList.add("sentiment-container");
+
+	// create container for article and image
+	const imgListContainerElem = document.createElement("div");
+	imgListContainerElem.classList.add("img-list-container")
+
+	// create container for article image
+	const imgContainerElem = document.createElement("div");
+	imgContainerElem.classList.add("img-container");
+
+	// create container for sentiment list
+	const listContainerElem = document.createElement("div");
+	listContainerElem.classList.add("list-container");
 
 	// create story wrapper
 	const storyWrapperElem = document.createElement("div");
-	storyWrapperElem.classList.add("story-wrapper");
+	storyWrapperElem.classList.add("story-container");
 
 	// append to sentiment wrapper
-	sentimentElem.appendChild(imgElem);
 	sentimentElem.appendChild(textElem);
-	sentimentElem.appendChild(commentElem);
+	sentimentElem.appendChild(imgListContainerElem);
+	imgListContainerElem.appendChild(imgContainerElem);
+	imgListContainerElem.appendChild(listContainerElem);
+	
+	// append to image container
+	imgContainerElem.appendChild(imgElem);
+	listContainerElem.appendChild(commentElem);
 
 	// append to story wrapper
-	storyWrapperElem.appendChild(titleElem);
+	storyWrapperElem.appendChild(titleContainerElem);
 	storyWrapperElem.appendChild(sentimentElem);
 
+	// append title to title container
+	titleContainerElem.appendChild(titleElem);
+
 	// append to DOM
-	storyElem.appendChild(storyWrapperElem);
+	resultsElem.appendChild(storyWrapperElem);
+
+	document.querySelector("#results").scrollIntoView({
+		behavior: "smooth",
+		block: "start",
+		inline: "nearest"
+	});
 };
 
 // analyze sentiment of headline
@@ -228,6 +259,7 @@ app.analyzeSentiment = (storyData, commentText) => {
 	fetch(app.useProxy(app.sentimentUrl, "sentimentAnalyzer", commentText))
 		.then((res) => res.json())
 		.then((sentimentData) => {
+
 			// display results
 			app.displayResults(storyData, sentimentData);
 		});
@@ -300,6 +332,7 @@ app.setupForm = (event) => {
 	} else {
 		alert("Please enter preference");
 	}
+
 };
 
 // init method
