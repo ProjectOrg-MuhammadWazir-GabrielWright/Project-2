@@ -101,6 +101,20 @@
             margin: 1rem 0 0 0;
         }
     }
+
+    .preferences {
+
+        select {
+            @include fontSize(24);
+        }
+
+        input {
+            @include fontSize(24);
+            @include lineHeight(42);
+            width: 190px;
+            height: 44px;
+        }
+    }
 }
 
 // Screen-size between 768px and 1200px;
@@ -193,6 +207,25 @@
         }
 
         a {
+            @include fontSize(28);
+            @include lineHeight(62);
+            width: 300px;
+            height: 60px;
+        }
+    }
+
+    .preferences {
+
+        select {
+            height: 60px;
+        }
+
+        i {
+            @include fontSize(50);
+            top: 2px;
+        }
+
+        input {
             @include fontSize(28);
             @include lineHeight(62);
             width: 300px;
