@@ -674,6 +674,28 @@ nav i {
 }
 
 /* Media Queries Partial */
+@media screen and (min-width: 400px) {
+  .results .img-list-container {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  .results .img-container {
+    width: 60%;
+    margin-left: 0.25rem;
+  }
+  .results img {
+    width: 100%;
+  }
+  .results .list-container {
+    width: 50%;
+  }
+  .results li {
+    margin: 0 0.25rem 0;
+    text-align: left;
+  }
+}
 @media screen and (min-width: 480px) {
   header h1 {
     font-size: 3.7rem;
@@ -756,25 +778,15 @@ nav i {
     height: 44px;
   }
 
-  .results .img-list-container {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-  }
-  .results .img-container {
-    width: 60%;
-    margin-left: 0.25rem;
-  }
-  .results img {
-    width: 100%;
-  }
-  .results .list-container {
-    width: 50%;
-  }
   .results li {
     margin: 0 0 0.5rem 1rem;
     text-align: left;
+  }
+}
+@media screen and (min-width: 620px) {
+  .results li {
+    font-size: 1.1rem;
+    margin: 0.5rem 0 0.5rem 1rem;
   }
 }
 @media screen and (min-width: 768px) {
@@ -868,6 +880,12 @@ nav i {
   .results li {
     font-size: 1.3rem;
     margin: 1rem 0 1rem 1rem;
+  }
+}
+@media screen and (min-width: 980px) {
+  .results li {
+    font-size: 1.9rem;
+    margin: 1.25rem 0 1.25rem 1rem;
   }
 }
 @media screen and (min-width: 1200px) {
