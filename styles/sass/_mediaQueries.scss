@@ -115,6 +115,37 @@
             height: 44px;
         }
     }
+
+    .results {
+        .img-list-container {
+            flex-direction: row;
+        }
+
+        .img-container {
+            width: 60%;
+            margin-left: 0.25rem;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .list-container {
+            width: 50%;
+        }
+
+        li {
+            margin: 0 0 0.5rem 1rem;
+            text-align: left;
+        }
+
+        // ul li:last-child {
+        //     text-align: right;
+        //     margin-right: 1rem;
+        // }
+    }
+
+
 }
 
 // Screen-size between 768px and 1200px;
@@ -233,6 +264,22 @@
         }
     }
 
+    .results {
+
+        h3 {
+            @include fontSize(20);
+        }
+
+        h4 {
+            @include fontSize(24);
+        }
+
+        li {
+            @include fontSize(26);
+            margin: 1rem 0 1rem 1rem;
+        }
+    }
+
     
 }
 
@@ -266,6 +313,28 @@
         
         h3 {
             margin: 3rem 0rem 3rem 0rem;
+        }
+    }
+
+    .results {
+
+        h3 {
+            @include fontSize(26);
+        }
+
+        h4 {
+            @include fontSize(45);
+            margin: 1.5rem 0 1.5rem 0.5rem;
+        }
+
+        i {
+            @include fontSize(55);
+            margin-right: 1rem;
+        }
+
+        li {
+            @include fontSize(50);
+            margin: 1rem 0 1rem 1.5rem;
         }
     }
 }
