@@ -85,6 +85,13 @@ const app = {};
 // target form element
 app.formEl = document.querySelector("form");
 
+// target buttons
+app.loadButtonEl = document.querySelector("#load-stories-button");
+app.changeButtonEl = document.querySelector("#change-preferences-button");
+
+// variable to store previous start position in stories arr
+app.prevArrEndPosition = 0;
+
 // Hacker news - Stories API - returns top 500 stores on site
 app.topStoriesUrl = "https://hacker-news.firebaseio.com/v0/topstories.json";
 // Hacker news - get item by id
@@ -137,9 +144,8 @@ app.updateIcon = (sentimentIcon, sentimentType) => {
 
 // display sentiment results
 app.displayResults = (storyData, sentimentData) => {
-
 	// target results container
-	const resultsElem = document.querySelector(".results");
+	const resultsElem = document.querySelector("#results-container");
 
 	// create container for comment
 	const commentElem = document.createElement("ul");
@@ -167,6 +173,7 @@ app.displayResults = (storyData, sentimentData) => {
 
 	// set up the story link
 	linkElem.setAttribute("href", storyData.url);
+	linkElem.setAttribute("target", "_blank");
 	linkElem.textContent = "Full Article";
 	linkListItem.appendChild(linkElem);
 	app.updateIcon(caretIcon);
@@ -196,7 +203,7 @@ app.displayResults = (storyData, sentimentData) => {
 	// create title container
 	const titleContainerElem = document.createElement("div");
 	titleContainerElem.classList.add("article-title-container");
-	
+
 	// create element for article image
 	const imgElem = document.createElement("img");
 	imgElem.setAttribute("src", "./assets/luca-bravo-XJXWbfSo2f0-unsplash.jpg");
@@ -212,7 +219,7 @@ app.displayResults = (storyData, sentimentData) => {
 
 	// create container for article and image
 	const imgListContainerElem = document.createElement("div");
-	imgListContainerElem.classList.add("img-list-container")
+	imgListContainerElem.classList.add("img-list-container");
 
 	// create container for article image
 	const imgContainerElem = document.createElement("div");
@@ -231,7 +238,7 @@ app.displayResults = (storyData, sentimentData) => {
 	sentimentElem.appendChild(imgListContainerElem);
 	imgListContainerElem.appendChild(imgContainerElem);
 	imgListContainerElem.appendChild(listContainerElem);
-	
+
 	// append to image container
 	imgContainerElem.appendChild(imgElem);
 	listContainerElem.appendChild(commentElem);
@@ -244,12 +251,12 @@ app.displayResults = (storyData, sentimentData) => {
 	titleContainerElem.appendChild(titleElem);
 
 	// append to DOM
-	resultsElem.appendChild(storyWrapperElem);
+	resultsElem.prepend(storyWrapperElem);
 
 	document.querySelector("#results").scrollIntoView({
 		behavior: "smooth",
 		block: "start",
-		inline: "nearest"
+		inline: "nearest",
 	});
 };
 
@@ -259,7 +266,6 @@ app.analyzeSentiment = (storyData, commentText) => {
 	fetch(app.useProxy(app.sentimentUrl, "sentimentAnalyzer", commentText))
 		.then((res) => res.json())
 		.then((sentimentData) => {
-
 			// display results
 			app.displayResults(storyData, sentimentData);
 		});
@@ -271,10 +277,17 @@ app.getComments = async (storyData, storyId) => {
 	const commentId = storyData.kids[0];
 	const commentUrl = `${app.itemUrl}${commentId}.json`;
 	const res = await fetch(app.useProxy(commentUrl, "hackerNews"));
-	const commentData = await res.json().text;
+	const commentData = await res.json();
 
 	// analyze comment text
-	app.analyzeSentiment(storyData, commentData, storyId);
+	app.analyzeSentiment(storyData, commentData.text, storyId);
+};
+
+app.getNextStory = () => {
+	const newArrEndPosition = app.prevArrEndPosition + 1;
+	app.getTopStories(app.prevArrEndPosition, newArrEndPosition);
+	// update previous array end position
+	app.prevArrEndPosition = newArrEndPosition;
 };
 
 // get top stories headlines
@@ -285,12 +298,18 @@ app.getStoryData = (storyId) => {
 	fetch(app.useProxy(storyUrl, "hackerNews"))
 		.then((res) => res.json())
 		.then((storyData) => {
-			app.getComments(storyData, storyId);
+			// check if story has comments
+			if (storyData.kids) {
+				app.getComments(storyData, storyId);
+			} else {
+				// requery for another story with comment
+				app.getNextStory();
+			}
 		});
 };
 
 // get top stories objects
-app.getTopStories = (articlesInput) => {
+app.getTopStories = (startPosition, articlesInput) => {
 	// route request through Juno proxy
 	fetch(app.useProxy(app.topStoriesUrl, "hackerNews"))
 		.then((res) => {
@@ -298,7 +317,7 @@ app.getTopStories = (articlesInput) => {
 		})
 		.then((dataArr) => {
 			// query returns 500 by default - trim array to match user selection
-			const articlesArr = dataArr.slice(0, articlesInput);
+			const articlesArr = dataArr.slice(startPosition, articlesInput);
 			articlesArr.forEach((storyId, i) => {
 				setTimeout(function () {
 					// loop over articles array to get story details by Id
@@ -318,9 +337,21 @@ app.validateInputs = (articleInput) => {
 	}
 };
 
+app.clearResults = () => {
+	// target results container
+	const results = document.querySelectorAll(".story-container");
+	// loop over nodelist of results containers
+	results.forEach((el) => {
+		el.remove();
+	});
+};
+
 app.setupForm = (event) => {
 	// prevent refresh
 	event.preventDefault();
+
+	// clear the results
+	app.clearResults();
 
 	// get user input from form
 	const articlesInput = document.querySelector("#articles").value;
@@ -328,17 +359,46 @@ app.setupForm = (event) => {
 	// validate user input, if it passes, proceed
 	if (app.validateInputs(articlesInput)) {
 		// feed user inputs into Hacker News query
-		app.getTopStories(articlesInput);
+		app.getTopStories(0, articlesInput);
+		// update the previous array end position
+		app.prevArrEndPosition = parseInt(articlesInput);
 	} else {
-		alert("Please enter preference");
+		alert("Please enter a preference");
 	}
+};
 
+app.loadMoreStories = () => {
+	// get the #stories preference
+	const articlesInput = document.querySelector("#articles").value;
+
+	// validate user input, if it passes, proceed
+	if (app.validateInputs(articlesInput)) {
+		// calculate new end position
+		const newArrEndPosition =
+			app.prevArrEndPosition + parseInt(articlesInput);
+
+		// call get stories, except shift the position
+		app.getTopStories(app.prevArrEndPosition, newArrEndPosition);
+
+		// update the previous array end position
+		app.prevArrEndPosition = newArrEndPosition;
+	} else {
+		alert("Please enter a preference");
+	}
+};
+
+app.moveToTop = () => {
+	// scrolls to top of page
+	window.scrollTo(0, 0);
 };
 
 // init method
 app.init = () => {
 	// attach event listener to form submit
 	app.formEl.addEventListener("submit", app.setupForm);
+	// attach listeners to buttons
+	app.loadButtonEl.addEventListener("click", app.loadMoreStories);
+	app.changeButtonEl.addEventListener("click", app.moveToTop);
 };
 
 // call init

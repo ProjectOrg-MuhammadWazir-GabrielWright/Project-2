@@ -28,9 +28,13 @@
 				<form action="#">
 					<!-- articles dropdown -->
 					<div class="articles-dropdown-container">
-						<label class="sr-only" for="articles">Select the number of articles to display</label>
+						<label class="sr-only" for="articles"
+							>Select the number of articles to display</label
+						>
 						<select name="articles" id="articles">
-							<option value="" selected># of articles to display</option>
+							<option value="" selected>
+								# of articles to display
+							</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -42,10 +46,17 @@
 					<input type="submit" value="Show News" />
 				</form>
 			</section>
-			
+
 			<!-- results -->
 			<section class="results wrapper" id="results">
-					<h2>Results:</h2>				
+				<h2>Results:</h2>
+				<!-- show more stories -->
+				<button id="load-stories-button">Show More Stories</button>
+				<!-- change preferences -->
+				<button id="change-preferences-button">
+					Change Preferences
+				</button>
+				<div id="results-container"></div>
 			</section>
 		</main>
 		<script src="./script.js"></script>
