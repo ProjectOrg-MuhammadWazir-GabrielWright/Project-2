@@ -86,7 +86,7 @@ const app = {};
 app.formEl = document.querySelector("form");
 
 // target buttons
-app.loadButtonEl = document.querySelector("#load-stories-button");
+app.showMoreButtonEl = document.querySelector("#show-more-button");
 app.changeButtonEl = document.querySelector("#change-preferences-button");
 
 // variable to store previous start position in stories arr
@@ -103,7 +103,6 @@ app.proxyUrl = "http://proxy.hackeryou.com";
 // Sentiments api key
 app.sentimentApiKey = "1bf35516b59467add152b51d2139220e";
 
-// Proxy method to get url
 app.useProxy = (apiUrl, apiType, inputText) => {
 	const url = new URL(app.proxyUrl);
 	if (apiType == "hackerNews") {
@@ -121,28 +120,35 @@ app.useProxy = (apiUrl, apiType, inputText) => {
 	return url;
 };
 
-// change icon based on sentiment score
 app.updateIcon = (sentimentIcon, sentimentType) => {
-	if (sentimentType === "AGREEMENT") {
-		sentimentIcon.classList.add("fa-thumbs-up");
-	} else if (sentimentType === "DISAGREEMENT") {
-		sentimentIcon.classList.add("fa-thumbs-down");
-	} else if (sentimentType === "IRONIC") {
-		sentimentIcon.classList.add("fa-brain");
-	} else if (sentimentType === "NONIRONIC") {
-		sentimentIcon.classList.add("fa-rainbow");
-	} else if (sentimentType === "SUBJECTIVE") {
-		sentimentIcon.classList.add("fa-bolt-lightning");
-	} else if (sentimentType === "OBJECTIVE") {
-		sentimentIcon.classList.add("fa-sun");
-	} else {
-		sentimentIcon.classList.add("fa-caret-right");
+	// change icon based on sentiment score
+	switch (sentimentType) {
+		case "AGREEMENT":
+			sentimentIcon.classList.add("fa-thumbs-up");
+			break;
+		case "DISAGREEMENT":
+			sentimentIcon.classList.add("fa-thumbs-down");
+			break;
+		case "IRONIC":
+			sentimentIcon.classList.add("fa-brain");
+			break;
+		case "NONIRONIC":
+			sentimentIcon.classList.add("fa-rainbow");
+			break;
+		case "SUBJECTIVE":
+			sentimentIcon.classList.add("fa-bolt-lightning");
+			break;
+		case "OBJECTIVE":
+			sentimentIcon.classList.add("fa-sun");
+			break;
+		default:
+			sentimentIcon.classList.add("fa-caret-right");
 	}
+
 	// add solid coloring
 	sentimentIcon.classList.add("fa-solid");
 };
 
-// display sentiment results
 app.displayResults = (storyData, sentimentData) => {
 	// target results container
 	const resultsElem = document.querySelector("#results-container");
@@ -260,22 +266,23 @@ app.displayResults = (storyData, sentimentData) => {
 	});
 };
 
-// analyze sentiment of headline
-app.analyzeSentiment = (storyData, commentText) => {
-	// query for sentiment
-	fetch(app.useProxy(app.sentimentUrl, "sentimentAnalyzer", commentText))
-		.then((res) => res.json())
-		.then((sentimentData) => {
-			// display results
-			app.displayResults(storyData, sentimentData);
-		});
+app.analyzeSentiment = async (storyData, commentText) => {
+	// query for comment sentiment
+	const res = await fetch(
+		app.useProxy(app.sentimentUrl, "sentimentAnalyzer", commentText)
+	);
+	const sentimentData = await res.json();
+
+	// display in the DOM
+	app.displayResults(storyData, sentimentData);
 };
 
-// get comment text from story's comment array
 app.getComments = async (storyData, storyId) => {
 	// grab the first comment from story
 	const commentId = storyData.kids[0];
 	const commentUrl = `${app.itemUrl}${commentId}.json`;
+
+	// query for comment data
 	const res = await fetch(app.useProxy(commentUrl, "hackerNews"));
 	const commentData = await res.json();
 
@@ -284,50 +291,46 @@ app.getComments = async (storyData, storyId) => {
 };
 
 app.getNextStory = () => {
+	// shift the position of the story array
 	const newArrEndPosition = app.prevArrEndPosition + 1;
 	app.getTopStories(app.prevArrEndPosition, newArrEndPosition);
+
 	// update previous array end position
 	app.prevArrEndPosition = newArrEndPosition;
 };
 
 // get top stories headlines
-app.getStoryData = (storyId) => {
+app.getStoryData = async (storyId) => {
 	// build story url with story id
 	const storyUrl = `${app.itemUrl}${storyId}.json`;
+
 	// query for story details
-	fetch(app.useProxy(storyUrl, "hackerNews"))
-		.then((res) => res.json())
-		.then((storyData) => {
-			// check if story has comments
-			if (storyData.kids) {
-				app.getComments(storyData, storyId);
-			} else {
-				// requery for another story with comment
-				app.getNextStory();
-			}
-		});
+	const res = await fetch(app.useProxy(storyUrl, "hackerNews"));
+	const storyData = await res.json();
+
+	// check if story has comments
+	if (storyData.kids) {
+		app.getComments(storyData, storyId);
+	} else {
+		// requery for another story with comment
+		app.getNextStory();
+	}
 };
 
-// get top stories objects
-app.getTopStories = (startPosition, articlesInput) => {
-	// route request through Juno proxy
-	fetch(app.useProxy(app.topStoriesUrl, "hackerNews"))
-		.then((res) => {
-			return res.json();
-		})
-		.then((dataArr) => {
-			// query returns 500 by default - trim array to match user selection
-			const articlesArr = dataArr.slice(startPosition, articlesInput);
-			articlesArr.forEach((storyId, i) => {
-				setTimeout(function () {
-					// loop over articles array to get story details by Id
-					app.getStoryData(storyId);
-				}, i * 1000);
-			});
-		});
+app.getTopStories = async (startPosition, articlesInput) => {
+	// query for full 500 item list of top stories
+	const res = await fetch(app.useProxy(app.topStoriesUrl, "hackerNews"));
+	const articlesArr = await res.json();
+	// trim articles array to match user selected results
+	const articlesShortArr = articlesArr.slice(startPosition, articlesInput);
+	articlesShortArr.forEach((storyId, i) => {
+		setTimeout(() => {
+			// loop over articles array to get story details by Id
+			app.getStoryData(storyId);
+		}, i * 1000);
+	});
 };
 
-// validate form input
 app.validateInputs = (articleInput) => {
 	//check to make sure user selected a value for both dropdowns
 	if (articleInput) {
@@ -339,10 +342,10 @@ app.validateInputs = (articleInput) => {
 
 app.clearResults = () => {
 	// target results container
-	const results = document.querySelectorAll(".story-container");
+	const storiesContainerElem = document.querySelectorAll(".story-container");
 	// loop over nodelist of results containers
-	results.forEach((el) => {
-		el.remove();
+	storiesContainerElem.forEach((elem) => {
+		elem.remove();
 	});
 };
 
@@ -352,6 +355,9 @@ app.setupForm = (event) => {
 
 	// clear the results
 	app.clearResults();
+
+	// set up event listener on "show more" button to display more results
+	app.showMoreButtonEl.addEventListener("click", app.showMoreStories);
 
 	// get user input from form
 	const articlesInput = document.querySelector("#articles").value;
@@ -367,7 +373,7 @@ app.setupForm = (event) => {
 	}
 };
 
-app.loadMoreStories = () => {
+app.showMoreStories = () => {
 	// get the #stories preference
 	const articlesInput = document.querySelector("#articles").value;
 
@@ -392,14 +398,11 @@ app.moveToTop = () => {
 	window.scrollTo(0, 0);
 };
 
-// init method
 app.init = () => {
 	// attach event listener to form submit
 	app.formEl.addEventListener("submit", app.setupForm);
 	// attach listeners to buttons
-	app.loadButtonEl.addEventListener("click", app.loadMoreStories);
 	app.changeButtonEl.addEventListener("click", app.moveToTop);
 };
 
-// call init
 app.init();
