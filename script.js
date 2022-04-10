@@ -121,7 +121,7 @@ app.useProxy = (apiUrl, apiType, inputText) => {
 };
 
 app.updateIcon = (sentimentIcon, sentimentType) => {
-	// change icon based on sentiment score
+	// set icon based on sentiment score
 	switch (sentimentType) {
 		case "AGREEMENT":
 			sentimentIcon.classList.add("fa-thumbs-up");
@@ -149,96 +149,43 @@ app.updateIcon = (sentimentIcon, sentimentType) => {
 	sentimentIcon.classList.add("fa-solid");
 };
 
-app.displayResults = (storyData, sentimentData) => {
-	// target results container
-	const resultsElem = document.querySelector("#results-container");
-
-	// create container for comment
-	const commentElem = document.createElement("ul");
-	commentElem.setAttribute("id", `comment-sentiment`);
-
-	// create list items for each sentiment
-	const agreementListItem = document.createElement("li");
-	const ironyListItem = document.createElement("li");
-	const subjectivityListItem = document.createElement("li");
-
-	// create list item for story url
-	const linkListItem = document.createElement("li");
-	const linkElem = document.createElement("a");
-
-	// set list item content
-	agreementListItem.textContent = sentimentData.agreement;
-	ironyListItem.textContent = sentimentData.irony;
-	subjectivityListItem.textContent = sentimentData.subjectivity;
-
-	// create icons
-	const agreementIcon = document.createElement("i");
-	const ironyIcon = document.createElement("i");
-	const subjectivityIcon = document.createElement("i");
-	const caretIcon = document.createElement("i");
-
-	// set up the story link
+app.setupStoryLink = (linkElem, storyData, linkListItem, caretIcon) => {
+	// set link content
 	linkElem.setAttribute("href", storyData.url);
 	linkElem.setAttribute("target", "_blank");
 	linkElem.textContent = "Full Article";
+	// build the hyperlink and icon
 	linkListItem.appendChild(linkElem);
 	app.updateIcon(caretIcon);
 	linkListItem.append(caretIcon);
+};
 
-	// update icon with appropriate class based on sentiment result
-	app.updateIcon(agreementIcon, sentimentData.agreement);
-	app.updateIcon(ironyIcon, sentimentData.irony);
-	app.updateIcon(subjectivityIcon, sentimentData.subjectivity);
-
-	// prepend icon to list item
-	agreementListItem.prepend(agreementIcon);
-	ironyListItem.prepend(ironyIcon);
-	subjectivityListItem.prepend(subjectivityIcon);
-
-	// append list items to ulElem
+app.appendSentiment = (
+	commentElem,
+	agreementListItem,
+	ironyListItem,
+	subjectivityListItem,
+	linkListItem
+) => {
 	commentElem.appendChild(agreementListItem);
 	commentElem.appendChild(ironyListItem);
 	commentElem.appendChild(subjectivityListItem);
 	commentElem.appendChild(linkListItem);
+};
 
-	// create container for story title
-	const titleElem = document.createElement("h3");
-	titleElem.classList.add("article-title");
-	titleElem.textContent = `${storyData.title} by ${storyData.by}`;
-
-	// create title container
-	const titleContainerElem = document.createElement("div");
-	titleContainerElem.classList.add("article-title-container");
-
-	// create element for article image
-	const imgElem = document.createElement("img");
-	imgElem.setAttribute("src", "./assets/luca-bravo-XJXWbfSo2f0-unsplash.jpg");
-	imgElem.setAttribute("alt", "a generic computer-themed picture");
-
-	// create overall sentiment text element
-	const textElem = document.createElement("h4");
-	textElem.textContent = "Overall user sentiment:";
-
-	// create container for sentiment information
-	const sentimentElem = document.createElement("div");
-	sentimentElem.classList.add("sentiment-container");
-
-	// create container for article and image
-	const imgListContainerElem = document.createElement("div");
-	imgListContainerElem.classList.add("img-list-container");
-
-	// create container for article image
-	const imgContainerElem = document.createElement("div");
-	imgContainerElem.classList.add("img-container");
-
-	// create container for sentiment list
-	const listContainerElem = document.createElement("div");
-	listContainerElem.classList.add("list-container");
-
-	// create story wrapper
-	const storyWrapperElem = document.createElement("div");
-	storyWrapperElem.classList.add("story-container");
-
+app.buildStoryContainer = (
+	sentimentElem,
+	textElem,
+	imgListContainerElem,
+	imgContainerElem,
+	listContainerElem,
+	imgElem,
+	commentElem,
+	storyWrapperElem,
+	titleContainerElem,
+	titleElem,
+	resultsElem
+) => {
 	// append to sentiment wrapper
 	sentimentElem.appendChild(textElem);
 	sentimentElem.appendChild(imgListContainerElem);
@@ -258,12 +205,184 @@ app.displayResults = (storyData, sentimentData) => {
 
 	// append to DOM
 	resultsElem.prepend(storyWrapperElem);
+};
 
+app.useSmoothScrollEffect = () => {
 	document.querySelector("#results").scrollIntoView({
 		behavior: "smooth",
 		block: "start",
 		inline: "nearest",
 	});
+};
+
+app.addClasses = (
+	titleElem,
+	titleContainerElem,
+	sentimentElem,
+	imgListContainerElem,
+	imgContainerElem,
+	listContainerElem,
+	storyWrapperElem
+) => {
+	titleElem.classList.add("article-title");
+	titleContainerElem.classList.add("article-title-container");
+	sentimentElem.classList.add("sentiment-container");
+	imgListContainerElem.classList.add("img-list-container");
+	imgContainerElem.classList.add("img-container");
+	listContainerElem.classList.add("list-container");
+	storyWrapperElem.classList.add("story-container");
+};
+
+app.setTextContent = (
+	storyData,
+	sentimentData,
+	titleElem,
+	textElem,
+	agreementListItem,
+	ironyListItem,
+	subjectivityListItem
+) => {
+	titleElem.textContent = `${storyData.title} by ${storyData.by}`;
+	textElem.textContent = "Overall user sentiment:";
+	agreementListItem.textContent = sentimentData.agreement;
+	ironyListItem.textContent = sentimentData.irony;
+	subjectivityListItem.textContent = sentimentData.subjectivity;
+};
+
+app.setAttributes = (imgElem, commentElem) => {
+	imgElem.setAttribute("src", "./assets/luca-bravo-XJXWbfSo2f0-unsplash.jpg");
+	imgElem.setAttribute("alt", "a generic computer-themed picture");
+	commentElem.setAttribute("id", `comment-sentiment`);
+};
+
+app.updateIcons = (
+	sentimentData,
+	agreementIcon,
+	ironyIcon,
+	subjectivityIcon
+) => {
+	app.updateIcon(agreementIcon, sentimentData.agreement);
+	app.updateIcon(ironyIcon, sentimentData.irony);
+	app.updateIcon(subjectivityIcon, sentimentData.subjectivity);
+};
+
+app.prependIcons = (
+	agreementListItem,
+	ironyListItem,
+	subjectivityListItem,
+	agreementIcon,
+	ironyIcon,
+	subjectivityIcon
+) => {
+	agreementListItem.prepend(agreementIcon);
+	ironyListItem.prepend(ironyIcon);
+	subjectivityListItem.prepend(subjectivityIcon);
+};
+
+app.displayResults = (storyData, sentimentData) => {
+	// target results container
+	const resultsElem = document.querySelector("#results-container");
+
+	// create unordered list
+	const commentElem = document.createElement("ul");
+
+	// create list items
+	const agreementListItem = document.createElement("li");
+	const ironyListItem = document.createElement("li");
+	const subjectivityListItem = document.createElement("li");
+	const linkListItem = document.createElement("li");
+
+	// create link
+	const linkElem = document.createElement("a");
+
+	// create icons
+	const agreementIcon = document.createElement("i");
+	const ironyIcon = document.createElement("i");
+	const subjectivityIcon = document.createElement("i");
+	const caretIcon = document.createElement("i");
+
+	// create element for article image
+	const imgElem = document.createElement("img");
+
+	// create headings
+	const titleElem = document.createElement("h3");
+	const textElem = document.createElement("h4");
+
+	// create containers
+	const titleContainerElem = document.createElement("div");
+	const sentimentElem = document.createElement("div");
+	const imgListContainerElem = document.createElement("div");
+	const imgContainerElem = document.createElement("div");
+	const listContainerElem = document.createElement("div");
+	const storyWrapperElem = document.createElement("div");
+
+	// set attributes
+	app.setAttributes(imgElem, commentElem);
+
+	// add classes to elements for styling
+	app.addClasses(
+		titleElem,
+		titleContainerElem,
+		sentimentElem,
+		imgListContainerElem,
+		imgContainerElem,
+		listContainerElem,
+		storyWrapperElem
+	);
+
+	// set text content on elements
+	app.setTextContent(
+		storyData,
+		sentimentData,
+		titleElem,
+		textElem,
+		agreementListItem,
+		ironyListItem,
+		subjectivityListItem
+	);
+
+	// set up story link
+	app.setupStoryLink(linkElem, storyData, linkListItem, caretIcon);
+
+	// update icon based on sentiment result
+	app.updateIcons(sentimentData, agreementIcon, ironyIcon, subjectivityIcon);
+
+	// prepend icon to list item
+	app.prependIcons(
+		agreementListItem,
+		ironyListItem,
+		subjectivityListItem,
+		agreementIcon,
+		ironyIcon,
+		subjectivityIcon
+	);
+
+	// append comment sentiment to DOM
+	app.appendSentiment(
+		commentElem,
+		agreementListItem,
+		ironyListItem,
+		subjectivityListItem,
+		linkListItem
+	);
+
+	// build story and append to DOM
+	app.buildStoryContainer(
+		sentimentElem,
+		textElem,
+		imgListContainerElem,
+		imgContainerElem,
+		listContainerElem,
+		imgElem,
+		commentElem,
+		storyWrapperElem,
+		titleContainerElem,
+		titleElem,
+		resultsElem
+	);
+
+	// slowly scroll to top of results section
+	app.useSmoothScrollEffect();
 };
 
 app.analyzeSentiment = async (storyData, commentText) => {
@@ -333,19 +452,15 @@ app.getTopStories = async (startPosition, articlesInput) => {
 
 app.validateInputs = (articleInput) => {
 	//check to make sure user selected a value for both dropdowns
-	if (articleInput) {
-		return true;
-	} else {
-		return false;
-	}
+	return articleInput ? true : false;
 };
 
 app.clearResults = () => {
 	// target results container
 	const storiesContainerElem = document.querySelectorAll(".story-container");
 	// loop over nodelist of results containers
-	storiesContainerElem.forEach((elem) => {
-		elem.remove();
+	storiesContainerElem.forEach((storyElem) => {
+		storyElem.remove();
 	});
 };
 
@@ -383,7 +498,7 @@ app.showMoreStories = () => {
 		const newArrEndPosition =
 			app.prevArrEndPosition + parseInt(articlesInput);
 
-		// call get stories, except shift the position
+		// get stories and shift the array position
 		app.getTopStories(app.prevArrEndPosition, newArrEndPosition);
 
 		// update the previous array end position
@@ -393,7 +508,7 @@ app.showMoreStories = () => {
 	}
 };
 
-app.moveToTop = () => {
+app.scrollToTop = () => {
 	// scrolls to top of page
 	window.scrollTo(0, 0);
 };
@@ -401,8 +516,8 @@ app.moveToTop = () => {
 app.init = () => {
 	// attach event listener to form submit
 	app.formEl.addEventListener("submit", app.setupForm);
-	// attach listeners to buttons
-	app.changeButtonEl.addEventListener("click", app.moveToTop);
+	// attach listeners to change preference button
+	app.changeButtonEl.addEventListener("click", app.scrollToTop);
 };
 
 app.init();
