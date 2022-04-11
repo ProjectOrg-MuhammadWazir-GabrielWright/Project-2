@@ -92,6 +92,9 @@ app.changeButtonEl = document.querySelector("#change-preferences-button");
 // variable to store previous start position in stories arr
 app.prevArrEndPosition = 0;
 
+// article image array index position
+app.imgArrayPosition = 0;
+
 // Hacker news - Stories API - returns top 500 stores on site
 app.topStoriesUrl = "https://hacker-news.firebaseio.com/v0/topstories.json";
 // Hacker news - get item by id
@@ -267,10 +270,15 @@ app.getRandomArticleImage = () => {
 		"vishnu-mohanan-pfR18JNEMv8-unsplash",
 	];
 
-	// randomize index of image
-	const index = Math.floor(Math.random() * imgArr.length);
+	// sequentially grab next image from array
+	if (app.imgArrayPosition < imgArr.length - 1) {
+		app.imgArrayPosition++;
+	} else {
+		// reset image array position at the end of img array
+		app.imgArrayPosition = 0;
+	}
 	// return image name
-	return imgArr[index];
+	return imgArr[app.imgArrayPosition];
 };
 
 app.setAttributes = (imgElem, commentElem) => {
