@@ -1,0 +1,142 @@
+/* Nav Partial */
+
+// Navigation bar styling
+.nav-bar {
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	width: 100%;
+	height: 55px;
+	background: $clr-black;
+
+	// Nav container styling
+	.nav-container {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	// Non-mobile navigation links styling
+	.nav-list {
+		display: none;
+
+		ul {
+			display: flex;
+		}
+
+		a {
+			@include fontSize(20);
+			margin-left: 5rem;
+			cursor: pointer;
+			color: $clr-white;
+
+			&:hover {
+				color: $clr-orange;
+			}
+		}
+	}
+
+	// Y logo styling
+	.logo {
+		margin: 0.5rem 0 0.5rem 0;
+		border-radius: 5px;
+		width: 35px;
+		height: 35px;
+
+		i {
+			color: $clr-orange;
+		}
+	}
+
+	// input checbox for slideout nav styling
+	input[type="checkbox"] {
+		position: absolute;
+		right: 0;
+		opacity: 0;
+
+		&:checked ~ .slideout-nav {
+			right: 0;
+			transition: 0.5s;
+		}
+
+		&:focus + label {
+			border: 1px dotted primary;
+		}
+	}
+
+	//label for slideout nav hamburger icon styling
+	label {
+		cursor: pointer;
+		position: absolute;
+		top: 0;
+		right: 15px;
+		margin: 0.5rem 0 0.5rem 0;
+	}
+
+	i {
+		@include fontSize(35);
+		&:hover {
+			color: $clr-orange;
+		}
+	}
+
+	// slideout nav styling
+	.slideout-nav {
+		position: fixed;
+		z-index: 20;
+		top: 0;
+		right: -250px;
+		display: flex;
+		flex-direction: column;
+		transition: 0.4s;
+		width: 100%;
+		max-width: 250px;
+		height: 100vh;
+		background-color: $clr-orange;
+		color: $clr-black;
+
+		.toggle-btn-container {
+			display: flex;
+			justify-content: flex-start;
+			margin: 0.4rem 0 2rem 0;
+
+			button {
+				@include fontSize(35);
+				margin-left: 1rem;
+				border: none;
+				padding: 0;
+				background-color: transparent;
+				color: $clr-black;
+				cursor: pointer;
+
+				&:hover,
+				&:focus {
+					color: $clr-white;
+				}
+			}
+
+			i {
+				@include fontSize(35);
+			}
+		}
+
+		ul {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		li,
+		a {
+			@include fontSize(20);
+			margin: 1rem;
+			font-weight: $fw-bold;
+			color: $clr-black;
+			cursor: pointer;
+
+			&:hover,
+			&:focus {
+				color: $clr-white;
+			}
+		}
+	}
+}

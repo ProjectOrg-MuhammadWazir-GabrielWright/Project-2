@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Query Form</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<script
+			src="https://kit.fontawesome.com/a3cb5273ce.js"
+			crossorigin="anonymous"
+		></script>
+		<link rel="stylesheet" href="styles/style.css" />
+	</head>
+	<body>
+		<nav class="nav-bar">
+			<div class="nav-container wrapper">
+				<div class="logo">
+					<a href="./index.html"
+						><i class="fa-brands fa-hacker-news"></i
+					></a>
+				</div>
+				<div class="nav-list">
+					<ul>
+						<li><a href="./index.html#home-header">Home</a></li>
+						<li><a href="./index.html#what-is-it">About</a></li>
+						<li>
+							<a href="./index.html#additional-factors"
+								>Get Started</a
+							>
+						</li>
+					</ul>
+				</div>
+				<div class="mobile-nav-container">
+					<input type="checkbox" id="opensSidebarMenu" />
+					<label for="opensSidebarMenu">
+						<i class="fa-solid fa-bars"></i>
+					</label>
+					<div class="slideout-nav">
+						<div class="toggle-btn-container">
+							<button class="toggle-btn" id="toggle-btn">
+								<i class="fa-solid fa-bars"></i>
+							</button>
+						</div>
+						<nav>
+							<ul>
+								<li>
+									<a href="./index.html#home-header">Home</a>
+								</li>
+								<li>
+									<a href="./index.html#what-is-it">About</a>
+								</li>
+								<li>
+									<a href="./index.html#additional-factors"
+										>Get Started</a
+									>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<header class="form-header">
+			<h1>Select # of articles to display:</h1>
+		</header>
+		<main>
+			<section class="preferences wrapper">
+				<form action="#">
+					<!-- articles dropdown -->
+					<div class="articles-dropdown-container">
+						<label class="sr-only" for="articles"
+							>Select the number of articles to display</label
+						>
+						<select name="articles" id="articles">
+							<option value="" selected>
+								# of articles to display
+							</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+						<i class="fa-solid fa-caret-down"></i>
+					</div>
+					<input type="submit" value="Show News" />
+				</form>
+			</section>
+
+			<!-- results -->
+			<section class="results wrapper" id="results">
+				<h2>Results</h2>
+				<div class="button-container">
+					<!-- show more stories -->
+					<button class="show-more-buton" id="show-more-button">
+						Show More News
+					</button>
+					<!-- change preferences -->
+					<button
+						class="change-preferences-button"
+						id="change-preferences-button"
+					>
+						Change Preferences
+					</button>
+				</div>
+				<div id="results-container"></div>
+			</section>
+		</main>
+		<script src="./script.js"></script>
+	</body>
+</html>

@@ -1,0 +1,412 @@
+/* Section Partial */
+
+//====================
+/* Landing Page */
+//====================
+
+// What is it section styling
+.what-is-it {
+	height: 100vh;
+	padding-top: 3rem;
+
+	.image-container {
+		margin: 0 auto;
+        height: 40vh;
+	}
+
+	img {
+		object-fit: cover;
+	}
+
+	h3 {
+		margin: 1.5rem 0rem 1.5rem 0rem;
+		text-align: center;
+	}
+
+	p {
+		margin: 1.5rem auto;
+		max-width: 1000px;
+		text-align: center;
+	}
+
+	a {
+        @include fontSize(100);
+		display: inline-block;
+        width: 100%;
+		text-align: center;
+        text-shadow: 0 5px 0 $clr-white;
+		color: $clr-orange;
+
+        &:active {
+            padding-top: 1px;
+            text-shadow: 0 2px 0 $clr-white;
+        }
+
+        &:hover,
+        &:focus {
+            opacity: 0.8;
+        }
+        
+	}
+}
+
+// How it works section styling
+.how-it-works {
+	height: 100vh;
+	padding-top: 3rem;
+
+	.image-container {
+        margin: 0 0 1.5rem 0;
+		height: 10vh;
+		
+		img {
+			object-fit: cover;
+		}
+	}
+
+	h3 {
+		text-align: center;
+	}
+
+	p {
+		@include fontSize(20);
+		margin: 1rem 0 1rem 0;
+		text-align: center;
+	}
+
+	li {
+		margin: 0 0 1rem 0;
+		text-align: center;
+	}
+
+	a {
+        @include fontSize(100);
+		display: inline-block;
+        width: 100%;
+		text-align: center;
+        text-shadow: 0 5px 0 $clr-white;
+		color: $clr-orange;
+		
+
+        &:active {
+            padding-top: 1px;
+            text-shadow: 0 2px 0 $clr-white;
+        }
+
+        &:hover,
+        &:focus {
+            opacity: 0.8;
+        }
+	}
+}
+
+// How its expressed section
+.how-its-expressed {
+	height: 100vh;
+	padding-top: 3rem;
+
+	.image-container {
+		height: 10vh;
+		margin: 0 0 1.5rem 0;
+
+		img {
+			object-fit: cover;
+		}
+	}
+
+	h3 {
+		text-align: center;
+	}
+
+	li {
+		@include fontSize(36);
+        margin: 1.5rem 0 1.5rem 0;
+        font-weight: $fw-bold;
+        text-align: center;
+	}
+
+	a {
+        @include fontSize(100);
+		display: inline-block;
+        width: 100%;
+		text-align: center;
+        text-shadow: 0 5px 0 $clr-white;
+		color: $clr-orange;
+		
+
+        &:active {
+            padding-top: 1px;
+            text-shadow: 0 2px 0 $clr-white;
+        }
+
+        &:hover,
+        &:focus {
+            opacity: 0.8;
+        }
+	}
+}
+
+// additional factors section
+.additional-factors {
+	height: 100vh;
+	padding-top: 3rem;
+
+	.image-container {
+        margin: 0 0 1.5rem 0;
+		height: 10vh;
+		
+		img {
+			object-fit: cover;
+		}
+	}
+
+	h3 {
+		text-align: center;
+	}
+
+	li {
+		@include fontSize(36);
+		font-weight: $fw-bold;
+		margin: 1.5rem 0 1.5rem 0;
+		text-align: center;
+	}
+
+	.link-container {
+		width: 100%;
+		text-align: center;
+	}
+
+	a {
+		@include lineHeight(40);
+		display: inline-block;
+		margin: 0 auto;
+		box-shadow: 0 5px 0 $clr-white;
+		border-radius: 50px;
+		width: 180px;
+		height: 42px;
+		background: $clr-orange;
+		cursor: pointer;
+		font-weight: $fw-bold;
+		text-align: center;
+		text-decoration: none;
+		color: $clr-black;
+
+        &:active {
+            box-shadow: 0 2px 0 $clr-white;
+            padding-top: 1px;
+        }
+
+        &:hover,
+        &:focus {
+            opacity: 0.8;
+        }
+	}
+}
+
+//==================================
+/* Prefernces / Form Results Page */
+//==================================
+
+// Preferences form section
+.preferences {
+	height: 70vh;
+
+	form {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.articles-dropdown-container {
+		position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 4rem 0 4rem 0;
+		width: 100%;
+		max-width: 800px;
+	}
+
+	select {
+		@include fontSize(20);
+		appearance: none;
+		-moz-appearance: none;
+		-webkit-appearance: none;
+        margin: 0 0 0 0;
+        box-shadow: 0 5px 0 $clr-orange;
+        border-radius: 15px;
+        width: 100%;
+        height: 50px;
+        padding: 0 0 0 0.5rem;
+		background: $clr-white;
+        font-family: $ff-primary;
+        font-weight: $fw-bold;
+		color: $clr-black;
+	}
+
+	i {
+		@include fontSize(40);
+		position: absolute;
+        top: 3px;
+		right: 15px;
+        color: $clr-black;
+		pointer-events: none;
+	}
+
+	input {
+        @include lineHeight(40);
+        margin: 0 auto;
+		border: none;
+		box-shadow: 0 5px 0 $clr-white;
+		border-radius: 50px;
+		width: 180px;
+		height: 42px;
+		background: $clr-orange;
+		font-weight: $fw-bold;
+		text-align: center;
+		text-decoration: none;
+		color: $clr-black;
+        cursor: pointer;
+
+        &:active {
+            box-shadow: 0 2px 0 $clr-white;
+            padding-top: 1px;
+        }
+
+        &:hover,
+        &:focus {
+            opacity: 0.8;
+        }
+	}
+}
+
+// results section styling
+.results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+	margin-bottom: 30rem;
+    scroll-margin-top: 3rem;
+    
+
+	h2 {
+		@include fontSize(32);
+		margin-bottom: 1rem;
+        font-weight: $fw-bold;
+        text-decoration: underline;
+	}
+
+	.story-container {
+		margin-bottom: 2rem;
+	}
+
+	.article-title-container {
+        display: flex;
+        align-items: center;
+        margin: 0.5rem 0 0 0;
+        border-radius: 10px;
+        min-height: 50px;
+        height: auto;
+		background: $clr-white;
+	}
+
+	h3 {
+		@include fontSize(16);
+		@include lineHeight(20);
+		display: inline-block;
+        margin: 0 0 0 0;
+        padding: 0 0.5rem 0 0.5rem;
+		color: $clr-black;
+		
+	}
+
+	.sentiment-container {
+        margin: 0.5rem 0 0.5rem 0;
+		border: 1px solid $clr-white;
+		border-radius: 10px;
+	}
+
+	h4 {
+		margin: 0.5rem 0.25rem 0.5rem 0.25rem;
+	}
+
+	.img-list-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	img {
+        margin: auto;
+		width: 95%;
+	}
+
+	ul {
+		display: flex;
+		flex-direction: column;
+	}
+
+	li {
+        margin: 0.5rem 0 0.5rem 0;
+		font-weight: $fw-bold;
+		text-align: center;
+	}
+
+	ul li:last-child {
+		a {
+			text-align: center;
+            text-decoration: underline;
+            color: $clr-white;
+
+			&:visited {
+				color: $clr-white;
+			}
+		}
+
+		i {
+            position: relative;
+            top: 3px;
+            margin-left: 0.5rem;
+			color: $clr-orange;
+		}
+	}
+
+	i {
+		@include fontSize(24);
+		margin-right: 0.5rem;
+	}
+
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2rem;
+        
+    }
+
+    button {
+        @include lineHeight(40);
+        margin: 1rem auto;
+        box-shadow: 0 5px 0 $clr-white;
+        border: none;      
+        border-radius: 50px;
+        width: 230px;
+        height: 42px;
+        background: $clr-orange;
+        cursor: pointer;
+        font-weight: $fw-bold;
+        text-align: center;
+        text-decoration: none;
+        color: $clr-black;
+
+        &:active {
+            padding-top: 1px;
+            box-shadow: 0 2px 0 $clr-white;
+        }
+
+        &:hover,
+        &:focus {
+            opacity: 0.8;
+        }
+    }
+}

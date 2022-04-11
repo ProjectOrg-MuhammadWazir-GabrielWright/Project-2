@@ -1,12 +1,11 @@
 // Importing partials
 @import "setup";
-@import "typography";
+@import "mixins";
 @import "variables";
+@import "typography";
 @import "baseStyles";
 @import "header";
-@import "footer";
 @import "sections";
-@import "mixins";
 @import "nav";
 @import "utility";
 @import "mediaQueries";

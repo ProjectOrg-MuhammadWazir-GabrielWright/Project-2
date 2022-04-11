@@ -1,0 +1,433 @@
+/* Media Queries Partial */
+
+// Minor breakpoint - Screen-size between 400px and 480px;
+@media screen and (min-width: 400px) {
+
+    // results section styling
+    .results {
+
+        .img-list-container {
+            flex-direction: row;
+        }
+        
+        .img-container {
+            width: 60%;
+            margin-left: 0.25rem;
+        }
+        
+        img {
+            width: 100%;
+        }
+        
+        .list-container {
+            width: 50%;
+        }
+
+        li {
+            margin: 0 0.25rem 0;
+            text-align: left;
+        }
+
+    }
+}
+
+// Major breakpoint - Screen-size between 480px and 768px;
+@media screen and (min-width: 480px) {
+    
+    // header styling
+    header {
+
+        h1 {
+            @include fontSize(74);
+        }
+
+        h2 {
+            @include fontSize(23);
+        }
+
+        a {
+            @include fontSize(24);
+            @include lineHeight(42);
+            width: 190px;
+            height: 44px;
+        }
+    }
+    
+    // what is it section styling
+    .what-is-it {
+
+        h3 {
+            @include fontSize(39);
+            @include lineHeight(40);
+            margin: 2rem 0rem 2rem 0rem;
+            
+        }
+
+        p {
+            @include fontSize(19);
+            @include lineHeight(25);
+        }
+    }
+
+    // how it works styling
+    .how-it-works {
+
+        .image-container {
+            height: 20vh;
+        }
+
+        h3 {
+            @include fontSize(39);
+            @include lineHeight(40);
+            margin: 2rem 0rem 1.5rem 0rem;
+        
+        }
+
+        p {
+            @include fontSize(23);
+            text-align: center;
+        }
+
+        li {
+            @include fontSize(19);
+            @include lineHeight(25);
+        }
+    }
+
+    // how its expressed styling
+    .how-its-expressed {
+        
+        .image-container {
+            height: 20vh;
+        }
+        
+        h3 {
+            @include fontSize(39);
+            @include lineHeight(40);
+            margin: 2rem 0rem 2rem 0rem;
+        }
+
+        li {
+            @include fontSize(41);
+        }
+    }
+
+    // additional factors section styling
+    .additional-factors {
+    
+        .image-container {
+            height: 20vh;
+        }
+    
+        h3 {
+            @include fontSize(39);
+            @include lineHeight(40);
+            margin: 2rem 0rem 2rem 0rem;
+        }
+    
+        li {
+            @include fontSize(41);
+        }
+
+        a {
+            @include fontSize(24);
+            @include lineHeight(42);
+            width: 190px;
+            height: 44px;
+            margin: 1rem 0 0 0;
+        }
+    }
+
+    // preferences section styling
+    .preferences {
+
+        select {
+            @include fontSize(24);
+        }
+
+        input {
+            @include fontSize(24);
+            @include lineHeight(42);
+            width: 190px;
+            height: 44px;
+        }
+    }
+
+    // results section styling
+    .results {
+
+        li {
+            margin: 0 0 0.5rem 1rem;
+            text-align: left;
+        }
+
+        button {
+            @include fontSize(24);  
+            width: 260px;  
+        }
+    }
+
+
+}
+
+// Minor breakpoint - Screen-size between 620px and 768px;
+@media screen and (min-width: 620px) {
+
+    // results section styling
+    .results {
+
+        li {
+            @include fontSize(22);
+            margin: 0.5rem 0 0.5rem 1rem;
+            
+        }
+    }
+}
+
+// Major breakpoint - Screen-size between 768px and 980px;
+@media screen and (min-width: 768px) {
+
+    // nav bar styling
+    .nav-bar {
+
+        .nav-list {
+            display: flex;
+            align-items: center;
+        }
+
+        .mobile-nav-container {
+            display: none;
+        }
+
+    }
+        
+    // landing page header styling
+    .landing-page-header {
+        
+        h1 {
+            @include fontSize(104);
+        }
+
+        h2 {
+            @include fontSize(33);
+            margin: 2rem 0 2rem 0rem;   
+        }
+
+        a {
+            @include fontSize(28);
+            @include lineHeight(62);
+            width: 300px;
+            height: 60px;
+        }
+    }
+
+    // what is it section styling
+    .what-is-it {
+
+        h3 {
+            @include fontSize(55);
+            @include lineHeight(56);
+        }
+
+        p {
+            @include fontSize(26);
+            @include lineHeight(35);  
+        }
+    }
+
+    // how it works section styling
+    .how-it-works {
+        
+        .image-container {
+            height: 40vh;
+        }
+
+        h3 {
+            @include fontSize(55);
+            @include lineHeight(56);            
+        }
+        
+        p {
+            @include fontSize(32);
+            margin: 0 0 1.5rem 0;
+        }
+        
+        li {
+            @include fontSize(26);
+            @include lineHeight(35);
+        }
+        
+    }
+
+    // how its expressed section styling
+    .how-its-expressed {
+        
+        .image-container {
+            height: 40vh;
+        }
+        
+        h3 {
+            @include fontSize(55);
+            @include lineHeight(56);
+        }
+
+        li {
+            @include fontSize(58);
+        }
+    }
+
+    // additional factors section styling
+    .additional-factors {
+    
+        .image-container {
+            height: 40vh;
+        }
+    
+        h3 {
+            @include fontSize(55);
+            @include lineHeight(56);
+        }
+    
+        li {
+            @include fontSize(58);
+        }
+
+        a {
+            @include fontSize(28);
+            @include lineHeight(62);
+            width: 300px;
+            height: 60px;
+        }
+    }
+
+    // preferences section styling
+    .preferences {
+
+        select {
+            height: 60px;
+        }
+
+        i {
+            @include fontSize(50);
+            top: 2px;
+        }
+
+        input {
+            @include fontSize(28);
+            @include lineHeight(62);
+            width: 300px;
+            height: 60px;
+        }
+    }
+
+    // results section styling
+    .results {
+
+        h3 {
+            @include fontSize(20);
+        }
+
+        h4 {
+            @include fontSize(24);
+        }
+
+        li {
+            @include fontSize(26);
+            margin: 1rem 0 1rem 1rem;
+        }
+
+        .button-container {
+            flex-direction: row;
+        }
+
+        button {
+            @include fontSize(28);
+            width: 300px;
+            height: 60px;
+        }
+
+        .show-more-button {
+            margin-right: 2rem;
+        }
+
+        .change-preferences-button {
+            margin-left: 2rem;
+        }
+    }
+
+    
+}
+
+// Minor breakpoint - Screen-size between 980px and 1200px;
+@media screen and (min-width: 980px) {
+
+    // results section styling
+    .results {
+
+        li {
+            @include fontSize(38);
+            margin: 1.25rem 0 1.25rem 1rem;
+
+        }
+    }
+}
+
+// Screen-size 1200px or greater;
+@media screen and (min-width: 1200px) {
+
+    // header section styling
+    header {
+
+        h1 {
+            @include fontSize(104);
+        }
+
+        h2 {
+            @include fontSize(33);
+            margin: 2rem 0 2rem 0rem;
+        }
+    }
+
+    // what is it section styling
+    .what-is-it {
+
+        h3 {
+            margin: 3rem 0rem 3rem 0rem;
+        }
+
+        p {
+            max-width: 1000px;
+        }
+    }
+
+    // how it works section styling
+    .how-it-works {
+        
+        h3 {
+            margin: 3rem 0rem 3rem 0rem;
+        }
+    }
+
+    // results section styling
+    .results {
+
+        h3 {
+            @include fontSize(26);
+        }
+
+        h4 {
+            @include fontSize(45);
+            margin: 1.5rem 0 1.5rem 0.5rem;
+        }
+
+        i {
+            @include fontSize(55);
+            margin-right: 1rem;
+        }
+
+        li {
+            @include fontSize(50);
+            margin: 1rem 0 1rem 1.5rem;
+        }
+    }
+}
