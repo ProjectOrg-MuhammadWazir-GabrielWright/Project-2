@@ -41,6 +41,12 @@
             text-shadow: 0 2px 0 $clr-white;
             padding-top: 1px;
         }
+
+        &:hover,
+        &:focus {
+            opacity: 0.8;
+        }
+        
 	}
 }
 
@@ -84,6 +90,11 @@
             text-shadow: 0 2px 0 $clr-white;
             padding-top: 1px;
         }
+
+        &:hover,
+        &:focus {
+            opacity: 0.8;
+        }
 	}
 }
 
@@ -122,6 +133,11 @@
         &:active {
             text-shadow: 0 2px 0 $clr-white;
             padding-top: 1px;
+        }
+
+        &:hover,
+        &:focus {
+            opacity: 0.8;
         }
 	}
 }
@@ -173,6 +189,11 @@
         &:active {
             box-shadow: 0 2px 0 $clr-white;
             padding-top: 1px;
+        }
+
+        &:hover,
+        &:focus {
+            opacity: 0.8;
         }
 	}
 }
@@ -244,6 +265,11 @@
         &:active {
             box-shadow: 0 2px 0 $clr-white;
             padding-top: 1px;
+        }
+
+        &:hover,
+        &:focus {
+            opacity: 0.8;
         }
 	}
 }
@@ -368,6 +394,11 @@
         &:active {
             box-shadow: 0 2px 0 $clr-white;
             padding-top: 1px;
+        }
+
+        &:hover,
+        &:focus {
+            opacity: 0.8;
         }
     }
 }

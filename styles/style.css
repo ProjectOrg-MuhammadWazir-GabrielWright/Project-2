@@ -333,6 +333,9 @@ a {
           box-shadow: 0 2px 0 #fff;
   padding-top: 1px;
 }
+.landing-page-header a:hover, .landing-page-header a:focus {
+  opacity: 0.8;
+}
 .landing-page-header h2 {
   margin: 1rem 0 1rem 0;
 }
@@ -380,6 +383,9 @@ a {
   text-shadow: 0 2px 0 #fff;
   padding-top: 1px;
 }
+.what-is-it a:hover, .what-is-it a:focus {
+  opacity: 0.8;
+}
 
 .how-it-works {
   height: 100vh;
@@ -417,6 +423,9 @@ a {
   text-shadow: 0 2px 0 #fff;
   padding-top: 1px;
 }
+.how-it-works a:hover, .how-it-works a:focus {
+  opacity: 0.8;
+}
 
 .how-its-expressed {
   height: 100vh;
@@ -450,6 +459,9 @@ a {
 .how-its-expressed a:active {
   text-shadow: 0 2px 0 #fff;
   padding-top: 1px;
+}
+.how-its-expressed a:hover, .how-its-expressed a:focus {
+  opacity: 0.8;
 }
 
 .additional-factors {
@@ -497,6 +509,9 @@ a {
   -webkit-box-shadow: 0 2px 0 #fff;
           box-shadow: 0 2px 0 #fff;
   padding-top: 1px;
+}
+.additional-factors a:hover, .additional-factors a:focus {
+  opacity: 0.8;
 }
 
 /* Form Page */
@@ -576,6 +591,9 @@ a {
   -webkit-box-shadow: 0 2px 0 #fff;
           box-shadow: 0 2px 0 #fff;
   padding-top: 1px;
+}
+.preferences input:hover, .preferences input:focus {
+  opacity: 0.8;
 }
 
 .results {
@@ -711,6 +729,9 @@ a {
   -webkit-box-shadow: 0 2px 0 #fff;
           box-shadow: 0 2px 0 #fff;
   padding-top: 1px;
+}
+.results button:hover, .results button:focus {
+  opacity: 0.8;
 }
 
 /* Nav Partial */
