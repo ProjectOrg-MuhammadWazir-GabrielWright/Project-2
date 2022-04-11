@@ -21,7 +21,7 @@ app.itemUrl = `https://hacker-news.firebaseio.com/v0/item/`;
 // Sentiments API url
 app.sentimentUrl = "https://api.meaningcloud.com/sentiment-2.1";
 // Proxy server url
-app.proxyUrl = "http://proxy.hackeryou.com";
+app.proxyUrl = "https://proxy.hackeryou.com";
 // Sentiments api key
 app.sentimentApiKey = "1bf35516b59467add152b51d2139220e";
 
