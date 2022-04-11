@@ -4,7 +4,7 @@
 .landing-page-header {
 	display: flex;
 	align-items: center;
-    height: 100vh;
+	height: 100vh;
 
 	// Learn more button
 	a {
@@ -12,8 +12,8 @@
 		display: inline-block;
 		width: 180px;
 		height: 42px;
-        box-shadow: 0 5px 0 $clr-white;
-        border-radius: 50px;
+		box-shadow: 0 5px 0 $clr-white;
+		border-radius: 50px;
 		background: $clr-orange;
 		cursor: pointer;
 		font-weight: $fw-bold;
@@ -21,18 +21,18 @@
 		text-decoration: none;
 		color: $clr-black;
 
-        &:active {
-            padding-top: 1px;
-            box-shadow: 0 2px 0 $clr-white;
-        }
+		&:active {
+			padding-top: 1px;
+			box-shadow: 0 2px 0 $clr-white;
+		}
 
-        &:hover,
-        &:focus {
-            opacity: 0.8;
-        }
+		&:hover,
+		&:focus {
+			opacity: 0.8;
+		}
 	}
 
-    // Heading above learn more button styling
+	// Heading above learn more button styling
 	h2 {
 		margin: 1rem 0 1rem 0;
 	}
@@ -40,11 +40,10 @@
 
 // Form / preferences page header styling
 .form-header {
-
-    h1 {
-        @include fontSize(34);
-        @include lineHeight(35);
-        margin: 12.75rem 0rem 0rem 0rem;
-        text-align: center;
-    }
+	h1 {
+		@include fontSize(34);
+		@include lineHeight(35);
+		margin: 12.75rem 0rem 0rem 0rem;
+		text-align: center;
+	}
 }

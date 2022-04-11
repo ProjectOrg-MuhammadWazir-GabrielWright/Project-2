@@ -772,13 +772,9 @@ a {
   border-radius: 5px;
   width: 35px;
   height: 35px;
-  background: #F60;
 }
-.nav-bar .logo p {
-  font-size: 1.5rem;
-  line-height: 1.75rem;
-  text-align: center;
-  color: #000;
+.nav-bar .logo i {
+  color: #F60;
 }
 .nav-bar input[type=checkbox] {
   position: absolute;
@@ -862,14 +858,17 @@ a {
       -ms-flex-align: start;
           align-items: flex-start;
 }
-.nav-bar .slideout-nav li, .nav-bar .slideout-nav a {
+.nav-bar .slideout-nav li,
+.nav-bar .slideout-nav a {
   font-size: 1rem;
   margin: 1rem;
   font-weight: 700;
   color: #000;
   cursor: pointer;
 }
-.nav-bar .slideout-nav li:hover, .nav-bar .slideout-nav li:focus, .nav-bar .slideout-nav a:hover, .nav-bar .slideout-nav a:focus {
+.nav-bar .slideout-nav li:hover, .nav-bar .slideout-nav li:focus,
+.nav-bar .slideout-nav a:hover,
+.nav-bar .slideout-nav a:focus {
   color: #fff;
 }
 

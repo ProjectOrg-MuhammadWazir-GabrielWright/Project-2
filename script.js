@@ -1,84 +1,3 @@
-/*
-	   // Problem:
-	   Sentiment Analyser for HackerNews Articles
-​
-	   // Purpose:
-	   It parses through the user comments/feedback left on news articles
-	   and extracts information like emotional agreement, polarity,
-	   subjectivity, and irony to display to the user of the tool which
-	   they can use to better improve the quality of their product (news articles).
-​
-	   // How to get/show data:
-​
-	   1. Query the HackerNews API to extract the top 5 stories of the day
-	   2. Query for the details about those stories
-	   3. Extract comments from each story
-	   4. Use the comments to query a sentiment analyzer API
-	   5. Parse response from sentiment analyzer and display results to user
-​
-	   // User Interface
-​
-	   Our user is:
-	   - Anyone who wants to read tech news
-​
-	   User pain:
-	   - They struggle to find articles that other users like/enjoy
-	   - They also want to get a sense of what other users' are saying about it
-​
-	   Our tool (MVP):
-	   - Provides users with a feed of articles that they may enjoy
-	   - When the user interacts with an article they have two options:
-​
-	   1. See what other's are saying/feeling about the article (sentiment)
-	   - If the user selects the sentiment option, they would see a full breakdown of
-	   the sentiment scores (emotional agreement, polarity, subjectivity, and irony).
-	   - If the user likes what they see in the preview, they can explore more by reading the full
-	   article
-​
-	   2. Read more about the article
-	   - Interact with a link to read more
-​
-​
-	   // Stretch goals
-​
-	   1. Getting Unsplash images to display for each article based on the title
-	   2. Displaying the sentiment scores using different icons (legend)
-	   3. Adding a landing page, with a call to action button which triggers the query
-	   4. Allow the user to choose how many articles to display from topstories list (default is 5)
-	   5. Allow the user to choose how many comments to analyze under each story (default is 1)
-	   6. Error handling
-​
-	   // Pseudocode
-​
-	   Step 1: Query for top articles via landing page
-	   - Has a query button on it with an event listener (form submit)
-	   - Event triggers, getTopStories method is called which hits the HackerNewsAPI and
-	   returns the top 5 articles ids in an array
-​
-	   Step 2: Query for story details
-	   - Loop over the articles (getStoryData method) array and query the HackerNewsAPI by ID to get details about
-	   story which includes the comments in an array
-	   - Pass in the story title into the displayResults method (defined below)
-​
-	   Step 3: Make a displayResults method
-	   - Target container in the DOM
-	   - Create elements to store the output from query
-	   - Set the text content of the elements to the queried results
-	   - Append the elements to the DOM using the container we that we targetted
-​
-	   Step 3: Query for comments on each story
-	   - Loop over the comments array using getCommentdate method array and pass it into the
-	   analyzeSentiment method (defined below)
-​
-	   Step 4: Make a analyzeSentiment method
-	   - Takes in text
-	   - Submits AJAX request to SentimentAnalyzerAPI
-	   - Outputs sentiment scores (emotional agreement, polarity, subjectivity, and irony)
-​
-	   Step 5: Call displayResults method again
-	   - Which appends the sentiment results to the DOM for the user to see
-				*/
-
 // namespace
 const app = {};
 
@@ -419,27 +338,39 @@ app.displayResults = (storyData, sentimentData) => {
 };
 
 app.analyzeSentiment = async (storyData, commentText) => {
-	// query for comment sentiment
+	try {
+		// query for comment sentiment
+		const res = await fetch(
+			app.useProxy(app.sentimentUrl, "sentimentAnalyzer", commentText)
+		);
 
-	const res = await fetch(
-		app.useProxy(app.sentimentUrl, "sentimentAnalyzer", commentText)
-	);
-	const sentimentData = await res.json();
-	// display in the DOM
-	app.displayResults(storyData, sentimentData);
+		const sentimentData = await res.json();
+		// display in the DOM
+		app.displayResults(storyData, sentimentData);
+	} catch (err) {
+		alert(
+			`There was an issue with the sentiment analyzer API call. Here's the error: ${err}`
+		);
+	}
 };
 
 app.getComments = async (storyData, storyId) => {
-	// grab the first comment from story
-	const commentId = storyData.kids[0];
-	const commentUrl = `${app.itemUrl}${commentId}.json`;
+	try {
+		// grab the first comment from story
+		const commentId = storyData.kids[0];
+		const commentUrl = `${app.itemUrl}${commentId}.json`;
 
-	// query for comment data
-	const res = await fetch(app.useProxy(commentUrl, "hackerNews"));
-	const commentData = await res.json();
+		// query for comment data
+		const res = await fetch(app.useProxy(commentUrl, "hackerNews"));
+		const commentData = await res.json();
 
-	// analyze comment text
-	app.analyzeSentiment(storyData, commentData.text, storyId);
+		// analyze comment text
+		app.analyzeSentiment(storyData, commentData.text, storyId);
+	} catch (err) {
+		alert(
+			`There was an issue with the Hacker News API call that gets the comments data. Here's the error: ${err}`
+		);
+	}
 };
 
 app.getNextStory = () => {
@@ -453,34 +384,50 @@ app.getNextStory = () => {
 
 // get top stories headlines
 app.getStoryData = async (storyId) => {
-	// build story url with story id
-	const storyUrl = `${app.itemUrl}${storyId}.json`;
+	try {
+		// build story url with story id
+		const storyUrl = `${app.itemUrl}${storyId}.json`;
 
-	// query for story details
-	const res = await fetch(app.useProxy(storyUrl, "hackerNews"));
-	const storyData = await res.json();
+		// query for story details
+		const res = await fetch(app.useProxy(storyUrl, "hackerNews"));
+		const storyData = await res.json();
 
-	// check if story has comments
-	if (storyData.kids) {
-		app.getComments(storyData, storyId);
-	} else {
-		// requery for another story with comment
-		app.getNextStory();
+		// check if story has comments
+		if (storyData.kids) {
+			app.getComments(storyData, storyId);
+		} else {
+			// requery for another story with comment
+			app.getNextStory();
+		}
+	} catch (err) {
+		alert(
+			`There was an issue with the Hacker News API call that gets the story data. Here's the error: ${err}`
+		);
 	}
 };
 
 app.getTopStories = async (startPosition, articlesInput) => {
-	// query for full 500 item list of top stories
-	const res = await fetch(app.useProxy(app.topStoriesUrl, "hackerNews"));
-	const articlesArr = await res.json();
-	// trim articles array to match user selected results
-	const articlesShortArr = articlesArr.slice(startPosition, articlesInput);
-	articlesShortArr.forEach((storyId, i) => {
-		setTimeout(() => {
-			// loop over articles array to get story details by Id
-			app.getStoryData(storyId);
-		}, i * 1000);
-	});
+	try {
+		// query for full 500 item list of top stories
+		const res = await fetch(app.useProxy(app.topStoriesUrl, "hackerNews"));
+		const articlesArr = await res.json();
+
+		// trim articles array to match user selected results
+		const articlesShortArr = articlesArr.slice(
+			startPosition,
+			articlesInput
+		);
+		articlesShortArr.forEach((storyId, i) => {
+			setTimeout(() => {
+				// loop over articles array to get story details by Id
+				app.getStoryData(storyId);
+			}, i * 1000);
+		});
+	} catch (err) {
+		alert(
+			`There was an issue with the Hacker News API call that gets the top 500 stories. Here's the error: ${err}`
+		);
+	}
 };
 
 app.validateInputs = (articleInput) => {

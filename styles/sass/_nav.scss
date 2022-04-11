@@ -2,146 +2,141 @@
 
 // Navigation bar styling
 .nav-bar {
-    position: fixed;
-    z-index: 10;
-    top: 0;
-    width: 100%;
-    height: 55px;
-    background: $clr-black;
-    
-    // Nav container styling
-    .nav-container {
-        display: flex;
-        justify-content: space-between;
-    }
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	width: 100%;
+	height: 55px;
+	background: $clr-black;
 
-    // Non-mobile navigation links styling
-    .nav-list {
-        display: none;
+	// Nav container styling
+	.nav-container {
+		display: flex;
+		justify-content: space-between;
+	}
 
-        ul {
-            display: flex;
-        }
+	// Non-mobile navigation links styling
+	.nav-list {
+		display: none;
 
-        a {
-            @include fontSize(20);
-            margin-left: 5rem;
-            cursor: pointer;
-            color: $clr-white;
+		ul {
+			display: flex;
+		}
 
-            &:hover {
-                color: $clr-orange;
-            }
-        }
-    }
+		a {
+			@include fontSize(20);
+			margin-left: 5rem;
+			cursor: pointer;
+			color: $clr-white;
 
-    // Y logo styling
-    .logo {
-        margin: 0.5rem 0 0.5rem 0;
-        border-radius: 5px;
-        width: 35px;
-        height: 35px;
-        background: $clr-orange;   
+			&:hover {
+				color: $clr-orange;
+			}
+		}
+	}
 
-        p {
-            @include fontSize(30);
-            @include lineHeight(35);
-            text-align: center;
-            color: $clr-black
-        }
-    }
+	// Y logo styling
+	.logo {
+		margin: 0.5rem 0 0.5rem 0;
+		border-radius: 5px;
+		width: 35px;
+		height: 35px;
 
-    // input checbox for slideout nav styling
-    input[type=checkbox] {
-        position: absolute;
-        right: 0;
-        opacity: 0;
-        
+		i {
+			color: $clr-orange;
+		}
+	}
 
-        &:checked ~ .slideout-nav {
-            right: 0;
-            transition: 0.5s;
-        }
+	// input checbox for slideout nav styling
+	input[type="checkbox"] {
+		position: absolute;
+		right: 0;
+		opacity: 0;
 
-        &:focus + label {
-            border: 1px dotted primary;
-        }
-    }
+		&:checked ~ .slideout-nav {
+			right: 0;
+			transition: 0.5s;
+		}
 
-    //label for slideout nav hamburger icon styling
-    label {
-        cursor: pointer;
-        position: absolute;
-        top: 0;
-        right: 15px;
-        margin: 0.5rem 0 0.5rem 0; 
-    }
+		&:focus + label {
+			border: 1px dotted primary;
+		}
+	}
 
-    i {
-        @include fontSize(35);
-        &:hover {
-            color: $clr-orange;
-        }
-    }
+	//label for slideout nav hamburger icon styling
+	label {
+		cursor: pointer;
+		position: absolute;
+		top: 0;
+		right: 15px;
+		margin: 0.5rem 0 0.5rem 0;
+	}
 
-    // slideout nav styling
-    .slideout-nav {
-        position: fixed;
-        z-index: 20;
-        top: 0;
-        right: -250px;
-        display: flex;
-        flex-direction: column;
-        transition: 0.4s;
-        width: 100%;
-        max-width: 250px;
-        height: 100vh;
-        background-color: $clr-orange;
-        color: $clr-black;
+	i {
+		@include fontSize(35);
+		&:hover {
+			color: $clr-orange;
+		}
+	}
 
-        .toggle-btn-container {
-            display: flex;
-            justify-content: flex-start;
-            margin: 0.4rem 0 2rem 0;
+	// slideout nav styling
+	.slideout-nav {
+		position: fixed;
+		z-index: 20;
+		top: 0;
+		right: -250px;
+		display: flex;
+		flex-direction: column;
+		transition: 0.4s;
+		width: 100%;
+		max-width: 250px;
+		height: 100vh;
+		background-color: $clr-orange;
+		color: $clr-black;
 
-            button {
-                @include fontSize(35);
-                margin-left: 1rem;
-                border: none;
-                padding: 0;
-                background-color: transparent;
-                color: $clr-black;
-                cursor: pointer;
-                
-                &:hover,
-                &:focus {
-                    color: $clr-white;
-                }
-            }
+		.toggle-btn-container {
+			display: flex;
+			justify-content: flex-start;
+			margin: 0.4rem 0 2rem 0;
 
-            i {
-                @include fontSize(35);
-            }
-        }
+			button {
+				@include fontSize(35);
+				margin-left: 1rem;
+				border: none;
+				padding: 0;
+				background-color: transparent;
+				color: $clr-black;
+				cursor: pointer;
 
-        ul {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+				&:hover,
+				&:focus {
+					color: $clr-white;
+				}
+			}
 
-        }
+			i {
+				@include fontSize(35);
+			}
+		}
 
-        li, a {
-            @include fontSize(20);
-            margin: 1rem;
-            font-weight: $fw-bold;   
-            color: $clr-black;
-            cursor: pointer;
-            
-            &:hover,
-            &:focus {
-                color: $clr-white;
-            }
-        }
-    }
+		ul {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		li,
+		a {
+			@include fontSize(20);
+			margin: 1rem;
+			font-weight: $fw-bold;
+			color: $clr-black;
+			cursor: pointer;
+
+			&:hover,
+			&:focus {
+				color: $clr-white;
+			}
+		}
+	}
 }
