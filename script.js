@@ -556,12 +556,12 @@ app.scrollToTop = () => {
 };
 
 app.init = () => {
+	// set up the nav menu
+	app.setupSlideOutNav();
 	// attach event listener to form submit
 	app.formEl.addEventListener("submit", app.setupForm);
 	// attach listeners to change preference button
 	app.changeButtonEl.addEventListener("click", app.scrollToTop);
-	// set up the nav menu
-	app.setupSlideOutNav();
 };
 
 app.init();
