@@ -303,6 +303,150 @@ a {
   cursor: pointer;
 }
 
+/* Utility Partial */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Nav Partial */
+.nav-bar {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  width: 100%;
+  height: 55px;
+  background: #000;
+}
+.nav-bar .nav-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.nav-bar .nav-list {
+  display: none;
+}
+.nav-bar .nav-list ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.nav-bar .nav-list a {
+  font-size: 1rem;
+  margin-left: 5rem;
+  cursor: pointer;
+  color: #fff;
+}
+.nav-bar .nav-list a:hover {
+  color: #F60;
+}
+.nav-bar .logo {
+  margin: 0.5rem 0 0.5rem 0;
+  border-radius: 5px;
+  width: 35px;
+  height: 35px;
+}
+.nav-bar .logo i {
+  color: #F60;
+}
+.nav-bar input[type=checkbox] {
+  position: absolute;
+  right: 0;
+  opacity: 0;
+}
+.nav-bar input[type=checkbox]:checked ~ .slideout-nav {
+  right: 0;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+.nav-bar input[type=checkbox]:focus + label {
+  border: 1px dotted primary;
+}
+.nav-bar label {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 15px;
+  margin: 0.5rem 0 0.5rem 0;
+}
+.nav-bar i {
+  font-size: 1.75rem;
+}
+.nav-bar i:hover {
+  color: #F60;
+}
+.nav-bar .slideout-nav {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  right: -250px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  width: 100%;
+  max-width: 250px;
+  height: 100vh;
+  background-color: #F60;
+  color: #000;
+}
+.nav-bar .slideout-nav .toggle-btn-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin: 0.4rem 0 2rem 0;
+}
+.nav-bar .slideout-nav .toggle-btn-container button {
+  font-size: 1.75rem;
+  margin-left: 1rem;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  color: #000;
+  cursor: pointer;
+}
+.nav-bar .slideout-nav .toggle-btn-container button:hover, .nav-bar .slideout-nav .toggle-btn-container button:focus {
+  color: #fff;
+}
+.nav-bar .slideout-nav .toggle-btn-container i {
+  font-size: 1.75rem;
+}
+.nav-bar .slideout-nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+.nav-bar .slideout-nav li,
+.nav-bar .slideout-nav a {
+  font-size: 1rem;
+  margin: 1rem;
+  font-weight: 700;
+  color: #000;
+  cursor: pointer;
+}
+.nav-bar .slideout-nav li:hover, .nav-bar .slideout-nav li:focus,
+.nav-bar .slideout-nav a:hover,
+.nav-bar .slideout-nav a:focus {
+  color: #fff;
+}
+
 /* Header Partial */
 .landing-page-header {
   display: -webkit-box;
@@ -351,7 +495,7 @@ a {
 /* Landing Page */
 .what-is-it {
   height: 100vh;
-  padding-top: 3rem;
+  margin-top: 3rem;
 }
 .what-is-it .image-container {
   margin: 0 auto;
@@ -388,7 +532,7 @@ a {
 
 .how-it-works {
   height: 100vh;
-  padding-top: 3rem;
+  margin-top: 3rem;
 }
 .how-it-works .image-container {
   margin: 0 0 1.5rem 0;
@@ -428,7 +572,7 @@ a {
 
 .how-its-expressed {
   height: 100vh;
-  padding-top: 3rem;
+  margin-top: 3rem;
 }
 .how-its-expressed .image-container {
   height: 10vh;
@@ -465,7 +609,7 @@ a {
 
 .additional-factors {
   height: 100vh;
-  padding-top: 3rem;
+  margin-top: 3rem;
 }
 .additional-factors .image-container {
   margin: 0 0 1.5rem 0;
@@ -733,148 +877,35 @@ a {
   opacity: 0.8;
 }
 
-/* Nav Partial */
-.nav-bar {
-  position: fixed;
-  z-index: 10;
-  top: 0;
+/* Footer Partial */
+footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 100%;
-  height: 55px;
+  height: 50px;
   background: #000;
 }
-.nav-bar .nav-container {
+footer .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
-.nav-bar .nav-list {
-  display: none;
-}
-.nav-bar .nav-list ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-.nav-bar .nav-list a {
-  font-size: 1rem;
-  margin-left: 5rem;
-  cursor: pointer;
+footer a {
+  text-decoration: underline;
   color: #fff;
 }
-.nav-bar .nav-list a:hover {
+footer a:hover {
   color: #F60;
-}
-.nav-bar .logo {
-  margin: 0.5rem 0 0.5rem 0;
-  border-radius: 5px;
-  width: 35px;
-  height: 35px;
-}
-.nav-bar .logo i {
-  color: #F60;
-}
-.nav-bar input[type=checkbox] {
-  position: absolute;
-  right: 0;
-  opacity: 0;
-}
-.nav-bar input[type=checkbox]:checked ~ .slideout-nav {
-  right: 0;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-}
-.nav-bar input[type=checkbox]:focus + label {
-  border: 1px dotted primary;
-}
-.nav-bar label {
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  right: 15px;
-  margin: 0.5rem 0 0.5rem 0;
-}
-.nav-bar i {
-  font-size: 1.75rem;
-}
-.nav-bar i:hover {
-  color: #F60;
-}
-.nav-bar .slideout-nav {
-  position: fixed;
-  z-index: 20;
-  top: 0;
-  right: -250px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-  width: 100%;
-  max-width: 250px;
-  height: 100vh;
-  background-color: #F60;
-  color: #000;
-}
-.nav-bar .slideout-nav .toggle-btn-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  margin: 0.4rem 0 2rem 0;
-}
-.nav-bar .slideout-nav .toggle-btn-container button {
-  font-size: 1.75rem;
-  margin-left: 1rem;
-  border: none;
-  padding: 0;
-  background-color: transparent;
-  color: #000;
-  cursor: pointer;
-}
-.nav-bar .slideout-nav .toggle-btn-container button:hover, .nav-bar .slideout-nav .toggle-btn-container button:focus {
-  color: #fff;
-}
-.nav-bar .slideout-nav .toggle-btn-container i {
-  font-size: 1.75rem;
-}
-.nav-bar .slideout-nav ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-}
-.nav-bar .slideout-nav li,
-.nav-bar .slideout-nav a {
-  font-size: 1rem;
-  margin: 1rem;
-  font-weight: 700;
-  color: #000;
-  cursor: pointer;
-}
-.nav-bar .slideout-nav li:hover, .nav-bar .slideout-nav li:focus,
-.nav-bar .slideout-nav a:hover,
-.nav-bar .slideout-nav a:focus {
-  color: #fff;
-}
-
-/* Utility Partial */
-html {
-  scroll-behavior: smooth;
 }
 
 /* Media Queries Partial */
@@ -1142,7 +1173,7 @@ html {
   }
 
   .how-it-works h3 {
-    margin: 3rem 0rem 3rem 0rem;
+    margin: 2.5rem 0rem 1.5rem 0rem;
   }
 
   .results h3 {
