@@ -541,13 +541,14 @@ app.showMoreStories = () => {
 	}
 };
 
-// close slide-out nav drawer
-const slideOutNavCheckBoxElem = document.querySelector("#opensSidebarMenu");
-const toggleBtnElem = document.querySelector("#toggle-btn");
-toggleBtnElem.addEventListener("click", function () {
-	slideOutNavCheckBoxElem.checked = false;
-	console.log("It worked!!!");
-});
+app.setupSlideOutNav = () => {
+	// close slide-out nav drawer on click
+	const slideOutNavCheckBoxElem = document.querySelector("#opensSidebarMenu");
+	const toggleBtnElem = document.querySelector("#toggle-btn");
+	toggleBtnElem.addEventListener("click", function () {
+		slideOutNavCheckBoxElem.checked = false;
+	});
+};
 
 app.scrollToTop = () => {
 	// scroll to top of page
@@ -559,6 +560,8 @@ app.init = () => {
 	app.formEl.addEventListener("submit", app.setupForm);
 	// attach listeners to change preference button
 	app.changeButtonEl.addEventListener("click", app.scrollToTop);
+	// set up the nav menu
+	app.setupSlideOutNav();
 };
 
 app.init();
