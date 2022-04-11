@@ -12,15 +12,41 @@
 		<link rel="stylesheet" href="styles/style.css" />
 	</head>
 	<body>
-		<nav>
-			<div class="mobile-menu-container wrapper">
+		<nav class="nav-bar">
+			<div class="nav-container wrapper">
 				<div class="logo">
 					<p>Y</p>
 				</div>
-				<i class="fa-solid fa-bars"></i>
+				<div class="nav-list">
+					<ul>
+						<li>Home</li>
+						<li>About</li>
+						<li>Get Started</li>
+					</ul>
+				</div>
+				<div class="mobile-nav-container">
+					<input type="checkbox" id="opensSidebarMenu">
+					<label for="opensSidebarMenu">
+						<i class="fa-solid fa-bars"></i>
+					</label>
+					<div class="slideout-nav">
+						<div class="toggle-btn-container" onclick="show()">
+							<button class="toggle-btn" id="toggle-btn">
+								<i class="fa-solid fa-bars"></i>
+							</button>
+						</div>
+						<nav>
+							<ul>
+								<li><a href="#home-header"></a> Home</li>
+								<li><a href="#what-is-it"></a>About</li>
+								<li><a href="#additional-factor"></a>Get Started</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
 			</div>
 		</nav>
-		<header class="landing-page-header">
+		<header class="landing-page-header" id="home-header">
 			<div class="text-container wrapper">
 				<h1>Hacker News</h1>
 				<h2>Sentiment Analyzer</h2>

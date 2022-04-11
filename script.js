@@ -508,8 +508,16 @@ app.showMoreStories = () => {
 	}
 };
 
+// close slide-out nav drawer
+const slideOutNavCheckBoxElem = document.querySelector("#opensSidebarMenu");
+const toggleBtnElem = document.querySelector("#toggle-btn");
+toggleBtnElem.addEventListener("click", function() {
+	slideOutNavCheckBoxElem.checked = false;
+	console.log("It worked!!!");
+})
+
 app.scrollToTop = () => {
-	// scrolls to top of page
+	// scroll to top of page
 	window.scrollTo(0, 0);
 };
 

@@ -152,6 +152,11 @@
             text-align: left;
         }
 
+        button {
+            @include fontSize(24);  
+            width: 260px;  
+        }
+
         // ul li:last-child {
         //     text-align: right;
         //     margin-right: 1rem;
@@ -175,6 +180,15 @@
 
 // Screen-size between 768px and 1200px;
 @media screen and (min-width: 768px) {
+
+    .nav-list {
+        display: flex;
+        align-items: center;
+    }
+
+    .mobile-nav-container {
+        display: none;
+    }
 
     header {
         
@@ -302,6 +316,24 @@
         li {
             @include fontSize(26);
             margin: 1rem 0 1rem 1rem;
+        }
+
+        .button-container {
+            flex-direction: row;
+        }
+
+        button {
+            @include fontSize(28);
+            width: 300px;
+            height: 60px;
+        }
+
+        .show-more-button {
+            margin-right: 2rem;
+        }
+
+        .change-preferences-button {
+            margin-left: 2rem;
         }
     }
 

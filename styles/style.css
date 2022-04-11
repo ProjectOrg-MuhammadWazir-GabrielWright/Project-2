@@ -554,11 +554,22 @@ a {
 .results {
   scroll-margin-top: 3rem;
   margin-bottom: 30rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .results h2 {
   font-size: 1.6rem;
   font-weight: 700;
   margin-bottom: 1rem;
+  text-decoration: underline;
 }
 .results .story-container {
   margin-bottom: 2rem;
@@ -640,37 +651,180 @@ a {
   font-size: 1.2rem;
   margin-right: 0.5rem;
 }
+.results .button-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 2rem;
+}
+.results button {
+  border: none;
+  line-height: 2rem;
+  margin: 1rem auto;
+  -webkit-box-shadow: 0 5px 0 #fff;
+          box-shadow: 0 5px 0 #fff;
+  border-radius: 50px;
+  width: 230px;
+  height: 42px;
+  background: #F60;
+  cursor: pointer;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+}
 
 /* Nav Partial */
-nav {
+.nav-bar {
   position: fixed;
-  top: 0px;
-  width: 100%;
+  top: 0;
+  z-index: 10;
   background: #000;
+  width: 100%;
+  height: 55px;
 }
-nav .mobile-menu-container {
+
+.nav-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 0.5rem 0 0.5rem 0;
 }
-nav .logo {
+
+.nav-list {
+  display: none;
+}
+.nav-list ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.nav-list li {
+  font-size: 1rem;
+  margin-left: 5rem;
+  cursor: pointer;
+}
+.nav-list li:hover {
+  color: #F60;
+}
+
+.logo {
   background: #F60;
   width: 35px;
   height: 35px;
   border-radius: 5px;
+  margin: 0.5rem 0 0.5rem 0;
 }
-nav .logo p {
+.logo p {
   font-size: 1.5rem;
   line-height: 1.75rem;
   text-align: center;
   color: #000;
 }
-nav i {
+
+input[type=checkbox] {
+  opacity: 0;
+  position: absolute;
+  right: 0;
+}
+input[type=checkbox]:checked ~ .slideout-nav {
+  right: 0;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+input[type=checkbox]:focus + label {
+  border: 1px dotted primary;
+}
+
+label {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 15px;
+  margin: 0.5rem 0 0.5rem 0;
+}
+
+i {
   font-size: 1.75rem;
+}
+i:hover {
+  color: #F60;
+}
+
+.slideout-nav {
+  width: 100%;
+  max-width: 250px;
+  height: 100vh;
+  background-color: #F60;
+  color: #000;
+  position: fixed;
+  top: 0;
+  right: -250px;
+  z-index: 20;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+.slideout-nav .toggle-btn-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin: 0.4rem 0 2rem 0;
+}
+.slideout-nav .toggle-btn-container button {
+  color: #000;
+  background-color: transparent;
+  font-size: 1.75rem;
+  border: none;
+  cursor: pointer;
+  margin-left: 1rem;
+  padding: 0;
+}
+.slideout-nav .toggle-btn-container button:hover, .slideout-nav .toggle-btn-container button:focus {
+  color: #fff;
+}
+.slideout-nav .toggle-btn-container i {
+  font-size: 1.75rem;
+}
+.slideout-nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+.slideout-nav li {
+  font-size: 1rem;
+  color: #000;
+  font-weight: 700;
+  margin: 1rem;
+  cursor: pointer;
+}
+.slideout-nav li:hover, .slideout-nav li:focus {
+  color: #fff;
 }
 
 /* Media Queries Partial */
@@ -782,6 +936,10 @@ nav i {
     margin: 0 0 0.5rem 1rem;
     text-align: left;
   }
+  .results button {
+    font-size: 1.2rem;
+    width: 260px;
+  }
 }
 @media screen and (min-width: 620px) {
   .results li {
@@ -790,6 +948,19 @@ nav i {
   }
 }
 @media screen and (min-width: 768px) {
+  .nav-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+
+  .mobile-nav-container {
+    display: none;
+  }
+
   header h1 {
     font-size: 5.2rem;
   }
@@ -880,6 +1051,23 @@ nav i {
   .results li {
     font-size: 1.3rem;
     margin: 1rem 0 1rem 1rem;
+  }
+  .results .button-container {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  .results button {
+    font-size: 1.4rem;
+    width: 300px;
+    height: 60px;
+  }
+  .results .show-more-button {
+    margin-right: 2rem;
+  }
+  .results .change-preferences-button {
+    margin-left: 2rem;
   }
 }
 @media screen and (min-width: 980px) {
