@@ -249,8 +249,33 @@ app.setTextContent = (
 	subjectivityListItem.textContent = sentimentData.subjectivity;
 };
 
+app.getRandomArticleImage = () => {
+	// array containing image options from assets
+	const imgArr = [
+		"alexandre-debieve-FO7JIlwjOtU-unsplash",
+		"chris-ried-bN5XdU-bap4-unsplash",
+		"christopher-gower-m_HRfLhgABo-unsplash",
+		"domenico-loia-EhTcC9sYXsw-unsplash",
+		"fili-santillan-HeyFNqApSLQ-unsplash",
+		"ilya-pavlov-OqtafYT5kTw-unsplash",
+		"johannes-plenio-FZpCcPss9to-unsplash",
+		"kevin-ku-w7ZyuGYNpRQ-unsplash",
+		"luca-bravo-XJXWbfSo2f0-unsplash",
+		"magnus-engo-W4lcqyH9r8c-unsplash",
+		"markus-spiske-Skf7HxARcoc-unsplash",
+		"marvin-meyer-SYTO3xs06fU-unsplash",
+		"vishnu-mohanan-pfR18JNEMv8-unsplash",
+	];
+
+	// randomize index of image
+	const index = Math.floor(Math.random() * imgArr.length);
+	// return image name
+	return imgArr[index];
+};
+
 app.setAttributes = (imgElem, commentElem) => {
-	imgElem.setAttribute("src", "./assets/luca-bravo-XJXWbfSo2f0-unsplash.jpg");
+	const randomImg = app.getRandomArticleImage();
+	imgElem.setAttribute("src", `./assets/article-images/${randomImg}.jpg`);
 	imgElem.setAttribute("alt", "a generic computer-themed picture");
 	commentElem.setAttribute("id", `comment-sentiment`);
 };
@@ -511,10 +536,10 @@ app.showMoreStories = () => {
 // close slide-out nav drawer
 const slideOutNavCheckBoxElem = document.querySelector("#opensSidebarMenu");
 const toggleBtnElem = document.querySelector("#toggle-btn");
-toggleBtnElem.addEventListener("click", function() {
+toggleBtnElem.addEventListener("click", function () {
 	slideOutNavCheckBoxElem.checked = false;
 	console.log("It worked!!!");
-})
+});
 
 app.scrollToTop = () => {
 	// scroll to top of page
