@@ -420,11 +420,11 @@ app.displayResults = (storyData, sentimentData) => {
 
 app.analyzeSentiment = async (storyData, commentText) => {
 	// query for comment sentiment
+
 	const res = await fetch(
 		app.useProxy(app.sentimentUrl, "sentimentAnalyzer", commentText)
 	);
 	const sentimentData = await res.json();
-
 	// display in the DOM
 	app.displayResults(storyData, sentimentData);
 };
@@ -545,6 +545,10 @@ app.setupSlideOutNav = () => {
 	// close slide-out nav drawer on click
 	const slideOutNavCheckBoxElem = document.querySelector("#opensSidebarMenu");
 	const toggleBtnElem = document.querySelector("#toggle-btn");
+
+	// on page load - close nav bar
+	slideOutNavCheckBoxElem.checked = false;
+
 	toggleBtnElem.addEventListener("click", function () {
 		slideOutNavCheckBoxElem.checked = false;
 	});
@@ -558,10 +562,14 @@ app.scrollToTop = () => {
 app.init = () => {
 	// set up the nav menu
 	app.setupSlideOutNav();
-	// attach event listener to form submit
-	app.formEl.addEventListener("submit", app.setupForm);
-	// attach listeners to change preference button
-	app.changeButtonEl.addEventListener("click", app.scrollToTop);
+	// attach event listener to form submit - if it exists
+	if (app.formEl) {
+		app.formEl.addEventListener("submit", app.setupForm);
+	}
+	// attach listeners to change preference button - if it exists
+	if (app.changeButtonEl) {
+		app.changeButtonEl.addEventListener("click", app.scrollToTop);
+	}
 };
 
 app.init();
