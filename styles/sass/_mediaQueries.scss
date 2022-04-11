@@ -181,16 +181,21 @@
 // Screen-size between 768px and 1200px;
 @media screen and (min-width: 768px) {
 
-    .nav-list {
-        display: flex;
-        align-items: center;
+    .nav-bar {
+
+        .nav-list {
+            display: flex;
+            align-items: center;
+        }
+
     }
+    
 
     .mobile-nav-container {
         display: none;
     }
 
-    header {
+    .landing-page-header {
         
         h1 {
             @include fontSize(104);

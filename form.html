@@ -12,12 +12,38 @@
 		></script>
 	</head>
 	<body>
-		<nav>
-			<div class="mobile-menu-container wrapper">
+		<nav class="nav-bar">
+			<div class="nav-container wrapper">
 				<div class="logo">
 					<p>Y</p>
 				</div>
-				<i class="fa-solid fa-bars"></i>
+				<div class="nav-list">
+					<ul>
+						<li><a href="./landing-page.html#home-header">Home</a></li>
+						<li><a href="./landing-page.html#what-is-it">About</a></li>
+						<li><a href="./landing-page.html#additional-factors">Get Started</a></li>
+					</ul>
+				</div>
+				<div class="mobile-nav-container">
+					<input type="checkbox" id="opensSidebarMenu">
+					<label for="opensSidebarMenu">
+						<i class="fa-solid fa-bars"></i>
+					</label>
+					<div class="slideout-nav">
+						<div class="toggle-btn-container">
+							<button class="toggle-btn" id="toggle-btn">
+								<i class="fa-solid fa-bars"></i>
+							</button>
+						</div>
+						<nav>
+							<ul>
+								<li><a href="./landing-page.html#home-header">Home</a></li>
+								<li><a href="./landing-page.html#what-is-it">About</a></li>
+								<li><a href="./landing-page.html#additional-factors">Get Started</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
 			</div>
 		</nav>
 		<header class="form-header">

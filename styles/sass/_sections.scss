@@ -30,12 +30,17 @@
 	}
 
 	a {
+        @include fontSize(100);
 		display: inline-block;
 		text-align: center;
 		width: 100%;
-		@include fontSize(100);
 		color: $clr-orange;
 		text-shadow: 0 5px 0 $clr-white;
+
+        &:active {
+            text-shadow: 0 2px 0 $clr-white;
+            padding-top: 1px;
+        }
 	}
 }
 
@@ -74,6 +79,11 @@
 		@include fontSize(100);
 		color: $clr-orange;
 		text-shadow: 0 5px 0 $clr-white;
+
+        &:active {
+            text-shadow: 0 2px 0 $clr-white;
+            padding-top: 1px;
+        }
 	}
 }
 
@@ -108,6 +118,11 @@
 		@include fontSize(100);
 		color: $clr-orange;
 		text-shadow: 0 5px 0 $clr-white;
+
+        &:active {
+            text-shadow: 0 2px 0 $clr-white;
+            padding-top: 1px;
+        }
 	}
 }
 
@@ -154,6 +169,11 @@
 		text-align: center;
 		text-decoration: none;
 		color: $clr-black;
+
+        &:active {
+            box-shadow: 0 2px 0 $clr-white;
+            padding-top: 1px;
+        }
 	}
 }
 
@@ -220,6 +240,11 @@
 		text-align: center;
 		text-decoration: none;
 		color: $clr-black;
+
+        &:active {
+            box-shadow: 0 2px 0 $clr-white;
+            padding-top: 1px;
+        }
 	}
 }
 
@@ -339,5 +364,10 @@
         text-align: center;
         text-decoration: none;
         color: $clr-black;
+
+        &:active {
+            box-shadow: 0 2px 0 $clr-white;
+            padding-top: 1px;
+        }
     }
 }

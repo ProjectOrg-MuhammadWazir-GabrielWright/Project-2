@@ -19,6 +19,11 @@
 		text-align: center;
 		text-decoration: none;
 		color: $clr-black;
+
+        &:active {
+            box-shadow: 0 2px 0 $clr-white;
+            padding-top: 1px;
+        }
 	}
 
 	h2 {

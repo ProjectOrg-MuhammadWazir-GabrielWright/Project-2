@@ -1,86 +1,13 @@
 /* Nav Partial */
 
-//nav {
-    // position: fixed;
-    // top: 0px;
-    // width: 100%;
-    // background: $clr-black;
-
-    // .mobile-menu-container {
-    //     display: flex;
-    //     justify-content: space-between;
-    //     padding: 0.5rem 0 0.5rem 0;
-    // }
-
-    // .logo {
-    //     background: $clr-orange;
-    //     width: 35px;
-    //     height: 35px;
-    //     border-radius: 5px;
-
-    //     p {
-    //         @include fontSize(30);
-    //         @include lineHeight(35);
-    //         text-align: center;
-    //         color: $clr-black
-    //     }
-    // }
-
-    // i {
-    //     @include fontSize(35);
-    // }
-
-    // .slideout-nav {
-    //     position: fixed;
-    //     right: -250px;
-    //     width: 250px;
-    //     height: 100%;
-    //     background: $clr-orange;
-    //     transition: 0.4s;
-
-    //     &.active {
-    //         right: 0;
-    //     }
-
-    //     button {
-    //         background: none;
-    //         border: none;
-
-    //     }
-
-    //     i {
-    //         @include fontSize(35);
-    //         color: $clr-white;
-        
-    //         &:hover {
-    //             color: $clr-orange;
-    //         }
-    //     }
-
-    //     li {
-    //         @include fontSize(20);
-    //         color: $clr-black; 
-    //         font-weight: $fw-bold;   
-    //         margin: 2rem;        
-    //     }
-        
-    //     .toggle-btn-container {
-    //         position: absolute;
-    //         top: 30px;
-    //         right: 270px;
-    //     }
-
-
-    // }
-
-    .nav-bar {
-        position: fixed;
-        top: 0;
-        z-index: 10;
-        background: $clr-black;
-        width: 100%;
-        height: 55px;
-    }
+.nav-bar {
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    background: $clr-black;
+    width: 100%;
+    height: 55px;
+    
 
     .nav-container {
         display: flex;
@@ -94,10 +21,11 @@
             display: flex;
         }
 
-        li {
+        a {
             @include fontSize(20);
             margin-left: 5rem;
             cursor: pointer;
+            color: $clr-white;
 
             &:hover {
                 color: $clr-orange;
@@ -197,7 +125,7 @@
 
         }
 
-        li {
+        li, a {
             @include fontSize(20);
             color: $clr-black; 
             font-weight: $fw-bold;   
@@ -211,5 +139,5 @@
         }
     }
 
-    
+}
 //}
