@@ -1,18 +1,19 @@
 /* Header Partial */
 
+// Landing page header section styling
 .landing-page-header {
-	height: 100vh;
 	display: flex;
 	align-items: center;
+    height: 100vh;
 
 	// Learn more button
 	a {
 		@include lineHeight(40);
 		display: inline-block;
-		box-shadow: 0 5px 0 $clr-white;
-		border-radius: 50px;
 		width: 180px;
 		height: 42px;
+        box-shadow: 0 5px 0 $clr-white;
+        border-radius: 50px;
 		background: $clr-orange;
 		cursor: pointer;
 		font-weight: $fw-bold;
@@ -21,8 +22,8 @@
 		color: $clr-black;
 
         &:active {
-            box-shadow: 0 2px 0 $clr-white;
             padding-top: 1px;
+            box-shadow: 0 2px 0 $clr-white;
         }
 
         &:hover,
@@ -31,11 +32,13 @@
         }
 	}
 
+    // Heading above learn more button styling
 	h2 {
 		margin: 1rem 0 1rem 0;
 	}
 }
 
+// Form / preferences page header styling
 .form-header {
 
     h1 {

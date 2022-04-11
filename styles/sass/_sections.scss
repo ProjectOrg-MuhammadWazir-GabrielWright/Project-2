@@ -4,14 +4,14 @@
 /* Landing Page */
 //====================
 
+// What is it section styling
 .what-is-it {
 	height: 100vh;
 	padding-top: 3rem;
 
 	.image-container {
-		height: 40vh;
-		margin: 0 0 1.5rem 0;
 		margin: 0 auto;
+        height: 40vh;
 	}
 
 	img {
@@ -32,14 +32,14 @@
 	a {
         @include fontSize(100);
 		display: inline-block;
+        width: 100%;
 		text-align: center;
-		width: 100%;
+        text-shadow: 0 5px 0 $clr-white;
 		color: $clr-orange;
-		text-shadow: 0 5px 0 $clr-white;
 
         &:active {
-            text-shadow: 0 2px 0 $clr-white;
             padding-top: 1px;
+            text-shadow: 0 2px 0 $clr-white;
         }
 
         &:hover,
@@ -50,14 +50,15 @@
 	}
 }
 
+// How it works section styling
 .how-it-works {
 	height: 100vh;
 	padding-top: 3rem;
 
 	.image-container {
+        margin: 0 0 1.5rem 0;
 		height: 10vh;
-		margin: 0 0 1.5rem 0;
-
+		
 		img {
 			object-fit: cover;
 		}
@@ -79,16 +80,17 @@
 	}
 
 	a {
+        @include fontSize(100);
 		display: inline-block;
+        width: 100%;
 		text-align: center;
-		width: 100%;
-		@include fontSize(100);
+        text-shadow: 0 5px 0 $clr-white;
 		color: $clr-orange;
-		text-shadow: 0 5px 0 $clr-white;
+		
 
         &:active {
-            text-shadow: 0 2px 0 $clr-white;
             padding-top: 1px;
+            text-shadow: 0 2px 0 $clr-white;
         }
 
         &:hover,
@@ -98,6 +100,7 @@
 	}
 }
 
+// How its expressed section
 .how-its-expressed {
 	height: 100vh;
 	padding-top: 3rem;
@@ -117,22 +120,23 @@
 
 	li {
 		@include fontSize(36);
-		font-weight: $fw-bold;
-		margin: 1.5rem 0 1.5rem 0;
-		text-align: center;
+        margin: 1.5rem 0 1.5rem 0;
+        font-weight: $fw-bold;
+        text-align: center;
 	}
 
 	a {
+        @include fontSize(100);
 		display: inline-block;
+        width: 100%;
 		text-align: center;
-		width: 100%;
-		@include fontSize(100);
+        text-shadow: 0 5px 0 $clr-white;
 		color: $clr-orange;
-		text-shadow: 0 5px 0 $clr-white;
+		
 
         &:active {
-            text-shadow: 0 2px 0 $clr-white;
             padding-top: 1px;
+            text-shadow: 0 2px 0 $clr-white;
         }
 
         &:hover,
@@ -142,14 +146,15 @@
 	}
 }
 
+// additional factors section
 .additional-factors {
 	height: 100vh;
 	padding-top: 3rem;
 
 	.image-container {
+        margin: 0 0 1.5rem 0;
 		height: 10vh;
-		margin: 0 0 1.5rem 0;
-
+		
 		img {
 			object-fit: cover;
 		}
@@ -198,10 +203,11 @@
 	}
 }
 
-//====================
-/* Form Page */
-//====================
+//==================================
+/* Prefernces / Form Results Page */
+//==================================
 
+// Preferences form section
 .preferences {
 	height: 70vh;
 
@@ -213,12 +219,12 @@
 
 	.articles-dropdown-container {
 		position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 4rem 0 4rem 0;
 		width: 100%;
 		max-width: 800px;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		margin: 4rem 0 4rem 0;
 	}
 
 	select {
@@ -226,41 +232,41 @@
 		appearance: none;
 		-moz-appearance: none;
 		-webkit-appearance: none;
+        margin: 0 0 0 0;
+        box-shadow: 0 5px 0 $clr-orange;
+        border-radius: 15px;
+        width: 100%;
+        height: 50px;
+        padding: 0 0 0 0.5rem;
 		background: $clr-white;
+        font-family: $ff-primary;
+        font-weight: $fw-bold;
 		color: $clr-black;
-		font-family: $ff-primary;
-		font-weight: $fw-bold;
-		height: 50px;
-		border-radius: 15px;
-		box-shadow: 0 5px 0 $clr-orange;
-		margin: 0 0 0 0;
-		padding: 0 0 0 0.5rem;
-		width: 100%;
 	}
 
 	i {
 		@include fontSize(40);
-		color: $clr-black;
 		position: absolute;
+        top: 3px;
 		right: 15px;
-		top: 3px;
+        color: $clr-black;
 		pointer-events: none;
 	}
 
 	input {
+        @include lineHeight(40);
+        margin: 0 auto;
 		border: none;
-		@include lineHeight(40);
-		margin: 0 auto;
 		box-shadow: 0 5px 0 $clr-white;
 		border-radius: 50px;
 		width: 180px;
 		height: 42px;
 		background: $clr-orange;
-		cursor: pointer;
 		font-weight: $fw-bold;
 		text-align: center;
 		text-decoration: none;
 		color: $clr-black;
+        cursor: pointer;
 
         &:active {
             box-shadow: 0 2px 0 $clr-white;
@@ -274,17 +280,19 @@
 	}
 }
 
+// results section styling
 .results {
-	scroll-margin-top: 3rem;
-	margin-bottom: 30rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+	margin-bottom: 30rem;
+    scroll-margin-top: 3rem;
+    
 
 	h2 {
 		@include fontSize(32);
-		font-weight: $fw-bold;
 		margin-bottom: 1rem;
+        font-weight: $fw-bold;
         text-decoration: underline;
 	}
 
@@ -293,28 +301,29 @@
 	}
 
 	.article-title-container {
+        display: flex;
+        align-items: center;
+        margin: 0.5rem 0 0 0;
+        border-radius: 10px;
+        min-height: 50px;
+        height: auto;
 		background: $clr-white;
-		border-radius: 10px;
-		margin: 0.5rem 0 0 0;
-		min-height: 50px;
-		height: auto;
-		display: flex;
-		align-items: center;
 	}
 
 	h3 {
 		@include fontSize(16);
 		@include lineHeight(20);
-		margin: 0 0 0 0;
 		display: inline-block;
+        margin: 0 0 0 0;
+        padding: 0 0.5rem 0 0.5rem;
 		color: $clr-black;
-		padding: 0 0.5rem 0 0.5rem;
+		
 	}
 
 	.sentiment-container {
+        margin: 0.5rem 0 0.5rem 0;
 		border: 1px solid $clr-white;
 		border-radius: 10px;
-		margin: 0.5rem 0 0.5rem 0;
 	}
 
 	h4 {
@@ -328,27 +337,26 @@
 	}
 
 	img {
+        margin: auto;
 		width: 95%;
-		margin: auto;
 	}
 
 	ul {
 		display: flex;
 		flex-direction: column;
-		//height: 100%;
 	}
 
 	li {
+        margin: 0.5rem 0 0.5rem 0;
 		font-weight: $fw-bold;
-		margin: 0.5rem 0 0.5rem 0;
 		text-align: center;
 	}
 
 	ul li:last-child {
 		a {
-			color: $clr-white;
-			text-decoration: underline;
 			text-align: center;
+            text-decoration: underline;
+            color: $clr-white;
 
 			&:visited {
 				color: $clr-white;
@@ -356,10 +364,10 @@
 		}
 
 		i {
+            position: relative;
+            top: 3px;
+            margin-left: 0.5rem;
 			color: $clr-orange;
-			margin-left: 0.5rem;
-			position: relative;
-			top: 3px;
 		}
 	}
 
@@ -377,10 +385,10 @@
     }
 
     button {
-        border: none;
         @include lineHeight(40);
         margin: 1rem auto;
         box-shadow: 0 5px 0 $clr-white;
+        border: none;      
         border-radius: 50px;
         width: 230px;
         height: 42px;
@@ -392,8 +400,8 @@
         color: $clr-black;
 
         &:active {
-            box-shadow: 0 2px 0 $clr-white;
             padding-top: 1px;
+            box-shadow: 0 2px 0 $clr-white;
         }
 
         &:hover,

@@ -1,7 +1,9 @@
 /* Media Queries Partial */
 
+// Minor breakpoint - Screen-size between 400px and 480px;
 @media screen and (min-width: 400px) {
 
+    // results section styling
     .results {
 
         .img-list-container {
@@ -29,9 +31,10 @@
     }
 }
 
-// Screen-size between 480px and 768px;
+// Major breakpoint - Screen-size between 480px and 768px;
 @media screen and (min-width: 480px) {
     
+    // header styling
     header {
 
         h1 {
@@ -50,6 +53,7 @@
         }
     }
     
+    // what is it section styling
     .what-is-it {
 
         h3 {
@@ -65,6 +69,7 @@
         }
     }
 
+    // how it works styling
     .how-it-works {
 
         .image-container {
@@ -89,6 +94,7 @@
         }
     }
 
+    // how its expressed styling
     .how-its-expressed {
         
         .image-container {
@@ -106,6 +112,7 @@
         }
     }
 
+    // additional factors section styling
     .additional-factors {
     
         .image-container {
@@ -131,6 +138,7 @@
         }
     }
 
+    // preferences section styling
     .preferences {
 
         select {
@@ -145,6 +153,7 @@
         }
     }
 
+    // results section styling
     .results {
 
         li {
@@ -156,18 +165,15 @@
             @include fontSize(24);  
             width: 260px;  
         }
-
-        // ul li:last-child {
-        //     text-align: right;
-        //     margin-right: 1rem;
-        // }
     }
 
 
 }
 
+// Minor breakpoint - Screen-size between 620px and 768px;
 @media screen and (min-width: 620px) {
 
+    // results section styling
     .results {
 
         li {
@@ -178,9 +184,10 @@
     }
 }
 
-// Screen-size between 768px and 1200px;
+// Major breakpoint - Screen-size between 768px and 980px;
 @media screen and (min-width: 768px) {
 
+    // nav bar styling
     .nav-bar {
 
         .nav-list {
@@ -188,13 +195,13 @@
             align-items: center;
         }
 
-    }
-    
+        .mobile-nav-container {
+            display: none;
+        }
 
-    .mobile-nav-container {
-        display: none;
     }
-
+        
+    // landing page header styling
     .landing-page-header {
         
         h1 {
@@ -214,6 +221,7 @@
         }
     }
 
+    // what is it section styling
     .what-is-it {
 
         h3 {
@@ -227,6 +235,7 @@
         }
     }
 
+    // how it works section styling
     .how-it-works {
         
         .image-container {
@@ -250,6 +259,7 @@
         
     }
 
+    // how its expressed section styling
     .how-its-expressed {
         
         .image-container {
@@ -266,6 +276,7 @@
         }
     }
 
+    // additional factors section styling
     .additional-factors {
     
         .image-container {
@@ -289,6 +300,7 @@
         }
     }
 
+    // preferences section styling
     .preferences {
 
         select {
@@ -308,6 +320,7 @@
         }
     }
 
+    // results section styling
     .results {
 
         h3 {
@@ -345,8 +358,10 @@
     
 }
 
+// Minor breakpoint - Screen-size between 980px and 1200px;
 @media screen and (min-width: 980px) {
 
+    // results section styling
     .results {
 
         li {
@@ -360,6 +375,7 @@
 // Screen-size 1200px or greater;
 @media screen and (min-width: 1200px) {
 
+    // header section styling
     header {
 
         h1 {
@@ -372,6 +388,7 @@
         }
     }
 
+    // what is it section styling
     .what-is-it {
 
         h3 {
@@ -383,6 +400,7 @@
         }
     }
 
+    // how it works section styling
     .how-it-works {
         
         h3 {
@@ -390,6 +408,7 @@
         }
     }
 
+    // results section styling
     .results {
 
         h3 {
