@@ -494,7 +494,6 @@ html {
 /* Section Partial */
 /* Landing Page */
 .what-is-it {
-  height: 100vh;
   margin-top: 3rem;
 }
 .what-is-it .image-container {
@@ -531,7 +530,6 @@ html {
 }
 
 .how-it-works {
-  height: 100vh;
   margin-top: 3rem;
 }
 .how-it-works .image-container {
@@ -571,7 +569,6 @@ html {
 }
 
 .how-its-expressed {
-  height: 100vh;
   margin-top: 3rem;
 }
 .how-its-expressed .image-container {
@@ -608,8 +605,8 @@ html {
 }
 
 .additional-factors {
-  height: 100vh;
   margin-top: 3rem;
+  margin-bottom: 7rem;
 }
 .additional-factors .image-container {
   margin: 0 0 1.5rem 0;
