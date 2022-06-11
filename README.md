@@ -10,6 +10,6 @@
 - Allow user to select how many articles to display/analyze
 - Enable user to re-query for more articles in the feed
 
-## Team Members:
+## Team members:
 - Gabriel Wright
 - Muhammad Wazir
