@@ -1,4 +1,4 @@
-# Hacker News Sentiment Analyzer App
+# Hacker News Sentiment Analyzer App - Group Project
 
 ## Live site:
 - https://muhammad-wazir-gabriel-wright-sentiment-analyzer-project-2.netlify.app/
